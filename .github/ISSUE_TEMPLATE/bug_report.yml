@@ -1,0 +1,69 @@
+name: Bug report
+description: Report a reproducible defect in BookNest.
+title: 'bug: '
+labels: ['type:bug', 'needs-triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Do not include secrets, real library data or personal information.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: A clear, concise description of the defect.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Run `npm start`
+        2. Sign in as admin
+        3. Open Books and filter by ...
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Affected surface
+      options:
+        - Login
+        - Dashboard
+        - Books
+        - Book details dialog
+        - Members
+        - Navigation / layout
+        - Build / CI
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, OS, Node version and viewport.
+      placeholder: Chrome 142, Windows 11, Node 22.14, 390×844
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or console output
+      description: Drag in images or paste relevant output. Remove sensitive data first.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I can reproduce this on the latest `main`.
+          required: true
+        - label: I checked whether this is a documented demo limitation.
+          required: true

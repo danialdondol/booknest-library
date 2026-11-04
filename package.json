@@ -1,0 +1,60 @@
+{
+  "name": "booknest-library",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A calm, accessible small-library management demo built with vanilla JavaScript and Vite.",
+  "type": "module",
+  "homepage": "https://danialdondol.github.io/booknest-library/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danialdondol/booknest-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danialdondol/booknest-library/issues"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "start": "node scripts/start.mjs",
+    "setup": "node scripts/setup.mjs",
+    "dev": "vite",
+    "build": "vite build && node scripts/check-build.mjs",
+    "preview": "vite preview",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "npm run build && playwright test",
+    "screenshot": "node scripts/screenshot.mjs",
+    "check": "npm run lint && npm run format:check && npm run test:coverage && npm run build"
+  },
+  "keywords": [
+    "library",
+    "vanilla-javascript",
+    "vite",
+    "accessibility",
+    "chart.js"
+  ],
+  "author": "BookNest contributors",
+  "license": "MIT",
+  "dependencies": {
+    "@fontsource-variable/fraunces": "5.3.0",
+    "@fontsource-variable/manrope": "5.3.0",
+    "chart.js": "4.6.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.64.1",
+    "@vitest/coverage-v8": "4.1.12",
+    "eslint": "10.14.0",
+    "globals": "17.14.0",
+    "prettier": "3.9.10",
+    "vite": "8.3.5",
+    "vitest": "4.1.12"
+  }
+}

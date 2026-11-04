@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build and test output
+dist/
+coverage/
+playwright-report/
+test-results/
+blob-report/
+.vite/
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.log
+
+# Local screenshots that are not documentation
+screenshots/

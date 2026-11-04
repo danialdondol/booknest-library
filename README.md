@@ -8,9 +8,13 @@
 ![Tests](https://img.shields.io/badge/tests-96_passing-2f6b54)
 ![License](https://img.shields.io/badge/license-MIT-d6a756)
 ![Node](https://img.shields.io/badge/node-20.19%2B-4d7f8f)
-![CI](https://img.shields.io/badge/CI-GitHub_Actions-2f6b54)
 
-[Quickstart](#quickstart) · [Features](#features) · [Architecture](#architecture) · [Quality](#quality-gates) · [Docs](docs/) · [Roadmap](#roadmap)
+[![CI](https://github.com/danialdondol/booknest-library/actions/workflows/ci.yml/badge.svg)](https://github.com/danialdondol/booknest-library/actions/workflows/ci.yml)
+[![Deploy](https://github.com/danialdondol/booknest-library/actions/workflows/deploy.yml/badge.svg)](https://github.com/danialdondol/booknest-library/actions/workflows/deploy.yml)
+
+**Live demo:** <https://danialdondol.github.io/booknest-library/>
+
+[Quickstart](#quickstart) · [Live demo](https://danialdondol.github.io/booknest-library/) · [Features](#features) · [Architecture](#architecture) · [Quality](#quality-gates) · [Docs](docs/) · [Roadmap](#roadmap)
 
 </div>
 
@@ -37,6 +41,8 @@ app with vanilla JavaScript, accessible custom CSS, and locally bundled fonts an
 > It demonstrates UX and route protection; it is not a security boundary. See [SECURITY.md](SECURITY.md).
 
 ## Quickstart
+
+Try the [live demo](https://danialdondol.github.io/booknest-library/) first, or run it locally:
 
 ```bash
 npm start
@@ -220,14 +226,16 @@ See [SECURITY.md](SECURITY.md) and [ADR-0002](docs/adr/0002-demo-authentication.
 
 ## Deployment
 
+The project is live at **<https://danialdondol.github.io/booknest-library/>**.
+
 The repository includes a GitHub Pages workflow that deploys `dist/` after a successful CI run.
 
-1. Publish the repository (see [docs/github-publishing.md](docs/github-publishing.md)).
-2. In **Settings → Pages**, choose **GitHub Actions** as the source.
-3. Push to `main`; the Pages workflow runs after CI.
+1. In **Settings → Pages**, choose **GitHub Actions** as the source.
+2. Push to `main`; the Pages workflow runs after CI.
+3. Confirm the deployment at the live URL above.
 
-Vite uses a relative base, so the same build works at a project URL such as
-`https://<owner>.github.io/booknest-library/`.
+Vite uses a relative base, so the same build also works on a custom domain at the site root.
+See [docs/deployment.md](docs/deployment.md) for headers, caching and rollback notes.
 
 ## Assignment mapping
 

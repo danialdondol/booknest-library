@@ -1,5 +1,7 @@
 # Deployment guide
 
+BookNest is live at **<https://danialdondol.github.io/booknest-library/>**.
+
 BookNest builds to static files. Any static host can serve `dist/`.
 
 ## Local production check

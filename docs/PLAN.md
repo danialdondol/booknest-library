@@ -37,8 +37,10 @@ accessible front-end engineering.
 - [x] No secrets or real personal data are committed.
 - [x] README includes pitch, screenshot, quickstart, features, architecture and roadmap.
 - [x] CI, Pages deployment, Dependabot and community files are present.
-- [ ] GitHub remote, issues, project board, PRs and published release — blocked by missing
-      authenticated GitHub CLI in the build environment; runbook provided.
+- [x] GitHub remote, issues, project board, pull-request workflow and published release.
+      Repository: <https://github.com/danialdondol/booknest-library> · Live:
+      <https://danialdondol.github.io/booknest-library/> · Release:
+      <https://github.com/danialdondol/booknest-library/releases/tag/v0.1.0>
 
 ## Deliberate non-goals for v0.1.0
 

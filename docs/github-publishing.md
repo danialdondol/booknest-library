@@ -1,11 +1,13 @@
 # GitHub publishing runbook
 
-> **Status:** this runbook was not executed in the build environment because `gh` is not installed
-> and no GitHub token is available. Everything below is ready to run after authentication.
+> **Status:** executed on 2026-11-04. Repository:
+> <https://github.com/danialdondol/booknest-library> · Live:
+> <https://danialdondol.github.io/booknest-library/> · Release:
+> <https://github.com/danialdondol/booknest-library/releases/tag/v0.1.0>. The commands below remain
+> as a reproducible runbook for future releases.
 
-The local repository is initialized on `main` with all files committed. The intended repository name
-is `booknest-library`; `README.md` is the specification because no `TASKS.md` or issue list was
-present in the workspace.
+The local repository is initialized on `main` with all files committed. `README.md` is the
+specification because no `TASKS.md` or issue list was present in the workspace.
 
 ## 1. Authenticate
 

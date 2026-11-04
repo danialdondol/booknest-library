@@ -1,0 +1,53 @@
+:root {
+  color-scheme: light;
+
+  --paper: #f5efe3;
+  --paper-strong: #fffdf8;
+  --paper-deep: #ece1cf;
+  --paper-warm: #fbf6ec;
+
+  --ink: #1c302a;
+  --ink-soft: #33463f;
+  --muted: #5f6b63;
+  --muted-light: #626d65;
+
+  --moss: #2f6b54;
+  --moss-dark: #173d32;
+  --moss-deep: #102d25;
+  --moss-soft: #e2ede7;
+
+  --gold: #d6a756;
+  --gold-dark: #815515;
+  --gold-soft: #fbf0d8;
+
+  --terra: #b85c3b;
+  --terra-dark: #8f3f26;
+  --terra-soft: #f8e7df;
+
+  --blue: #4d7f8f;
+  --blue-soft: #e3edf0;
+
+  --violet: #82638f;
+  --violet-soft: #f0e8f2;
+
+  --line: #ded5c4;
+  --line-strong: #c9bda8;
+  --line-soft: rgba(28, 48, 42, 0.08);
+
+  --shadow-sm: 0 1px 2px rgba(27, 43, 37, 0.05), 0 6px 18px rgba(27, 43, 37, 0.04);
+  --shadow-md: 0 2px 4px rgba(27, 43, 37, 0.05), 0 18px 42px rgba(27, 43, 37, 0.09);
+  --shadow-lg: 0 30px 80px rgba(15, 39, 31, 0.24);
+
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  --radius-pill: 999px;
+
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  --font-body: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif;
+
+  --container: 1180px;
+  --gutter: clamp(1.1rem, 3vw, 2.25rem);
+  --focus: 0 0 0 3px var(--paper-strong), 0 0 0 6px var(--gold-dark);
+}

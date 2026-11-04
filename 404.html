@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="The requested BookNest Library page could not be found." />
+    <meta name="theme-color" content="#173d32" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' ws: wss:; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./src/styles/main.css" />
+    <title>Page not found | BookNest Library</title>
+  </head>
+  <body class="not-found-page">
+    <main class="not-found">
+      <a class="brand" href="./index.html" aria-label="BookNest sign in">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32">
+            <path d="M5 8.5c4.2-1.4 7.6-.8 11 2.3v14c-3.4-3.1-6.8-3.7-11-2.3v-14Z" />
+            <path d="M27 8.5c-4.2-1.4-7.6-.8-11 2.3v14c3.4-3.1 6.8-3.7 11-2.3v-14Z" />
+            <circle cx="16" cy="5.5" r="2.2" />
+          </svg>
+        </span>
+        <span class="brand__copy">
+          <span class="brand__name">BookNest</span>
+          <span class="brand__tag">Library desk</span>
+        </span>
+      </a>
+
+      <p class="not-found__code">404</p>
+      <h1>This shelf is empty.</h1>
+      <p>
+        The page you were looking for is not in the catalogue. Head back to the sign-in desk to
+        continue.
+      </p>
+      <a class="btn btn--primary" href="./index.html">
+        Return to sign in
+        <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-arrow-right"></use></svg>
+      </a>
+    </main>
+  </body>
+</html>

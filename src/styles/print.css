@@ -1,0 +1,37 @@
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .site-header,
+  .site-footer,
+  .toolbar,
+  .row-action,
+  .chart-data,
+  .page-heading__actions,
+  .login-story,
+  .login-panel .login-copyright {
+    display: none !important;
+  }
+
+  .page {
+    padding: 0;
+  }
+
+  .panel,
+  .stat-card,
+  .member-card {
+    break-inside: avoid;
+    border: 1px solid #bbb;
+    box-shadow: none;
+  }
+
+  .data-table thead {
+    display: table-header-group;
+  }
+
+  .data-table tr {
+    break-inside: avoid;
+  }
+}

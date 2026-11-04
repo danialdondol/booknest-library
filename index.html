@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Sign in to BookNest Library, a calm small-library management demo for staff."
+    />
+    <meta name="theme-color" content="#173d32" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' ws: wss:; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./src/styles/main.css" />
+    <title>Sign in | BookNest Library</title>
+    <script type="module" src="./src/pages/login.js"></script>
+  </head>
+  <body class="login-page" data-page="login">
+    <a class="skip-link" href="#login-main">Skip to sign in</a>
+    <noscript>
+      <p class="noscript">JavaScript is required to use the BookNest demo.</p>
+    </noscript>
+
+    <main id="login-main" class="login-layout">
+      <section class="login-story" aria-labelledby="story-title">
+        <div class="login-story__top">
+          <a class="brand brand--light" href="./index.html" aria-label="BookNest sign in">
+            <span class="brand__mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32">
+                <path d="M5 8.5c4.2-1.4 7.6-.8 11 2.3v14c-3.4-3.1-6.8-3.7-11-2.3v-14Z" />
+                <path d="M27 8.5c-4.2-1.4-7.6-.8-11 2.3v14c3.4-3.1 6.8-3.7 11-2.3v-14Z" />
+                <circle cx="16" cy="5.5" r="2.2" />
+              </svg>
+            </span>
+            <span class="brand__copy">
+              <span class="brand__name">BookNest</span>
+              <span class="brand__tag">Library desk</span>
+            </span>
+          </a>
+          <span class="story-badge">Demo workspace</span>
+        </div>
+
+        <div class="login-story__body">
+          <p class="eyebrow eyebrow--light">Small library, calm operations</p>
+          <h1 id="story-title">Every book in its place. Every member in the loop.</h1>
+          <p class="login-story__lede">
+            A thoughtfully simple desk for browsing the collection, understanding demand and keeping
+            the shelves moving.
+          </p>
+          <ul class="story-points">
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-book"></use></svg>
+              <span><strong>One clear catalogue.</strong> Search, filter and sort 16 titles.</span>
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-users"></use></svg>
+              <span><strong>Members at a glance.</strong> See who borrows and how often.</span>
+            </li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-spark"></use></svg>
+              <span><strong>Useful signals.</strong> Live statistics and visual summaries.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="book-shelf" aria-hidden="true">
+          <span class="spine spine--1">Design</span>
+          <span class="spine spine--2">Science</span>
+          <span class="spine spine--3">Fiction</span>
+          <span class="spine spine--4">Business</span>
+          <span class="spine spine--5">History</span>
+          <span class="spine spine--6">Code</span>
+          <span class="spine spine--7">Ideas</span>
+        </div>
+
+        <blockquote class="story-quote">
+          “A library is not a luxury but one of the necessities of life.”
+          <span>— Henry Ward Beecher</span>
+        </blockquote>
+      </section>
+
+      <section class="login-panel" aria-labelledby="login-title">
+        <div class="login-card">
+          <div class="demo-flag">
+            <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-shield"></use></svg>
+            Demo mode — no real data
+          </div>
+
+          <header>
+            <p class="eyebrow">Library desk</p>
+            <h2 id="login-title">Welcome back</h2>
+            <p>Sign in to review today’s collection.</p>
+          </header>
+
+          <div id="loginError" class="form-alert" role="alert" hidden></div>
+
+          <form id="loginForm" novalidate>
+            <div class="field">
+              <label for="username">Username</label>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                autocomplete="username"
+                autocapitalize="none"
+                spellcheck="false"
+                placeholder="admin"
+                aria-describedby="usernameHint"
+              />
+              <p class="field-hint" id="usernameHint">
+                Use <code>admin</code> or <code>librarian</code>.
+              </p>
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <div class="password-control">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  placeholder="Enter your password"
+                />
+                <button
+                  class="password-toggle"
+                  type="button"
+                  data-toggle-password
+                  aria-pressed="false"
+                  aria-label="Show password"
+                >
+                  <span data-password-label>Show</span>
+                </button>
+              </div>
+            </div>
+
+            <button class="btn btn--primary btn--block login-submit" type="submit">
+              Sign in
+              <svg class="icon" aria-hidden="true">
+                <use href="./icons.svg#icon-arrow-right"></use>
+              </svg>
+            </button>
+          </form>
+
+          <div class="demo-card">
+            <span class="demo-card__label">Demo access</span>
+            <div class="demo-card__credentials">
+              <code>admin</code><span>/</span><code>admin123</code>
+              <span aria-hidden="true">·</span>
+              <code>librarian</code><span>/</span><code>lib2026</code>
+            </div>
+            <button class="btn btn--secondary btn--sm" type="button" data-fill-demo>
+              Use demo credentials
+            </button>
+          </div>
+
+          <p class="login-footnote">
+            <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-info"></use></svg>
+            Session-only demo authentication. Credentials are public and must not protect real
+            library data.
+          </p>
+        </div>
+        <p class="login-copyright">BookNest v0.1.0 · IMS566 project</p>
+      </section>
+    </main>
+  </body>
+</html>

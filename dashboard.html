@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="BookNest Library dashboard with collection statistics, visual summaries and recent activity."
+    />
+    <meta name="theme-color" content="#173d32" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' ws: wss:; object-src 'none'; base-uri 'none'; form-action 'self'"
+    />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./src/styles/main.css" />
+    <title>Dashboard | BookNest Library</title>
+    <script type="module" src="./src/pages/dashboard.js"></script>
+  </head>
+  <body data-page="dashboard">
+    <div id="app" hidden>
+      <!-- include:header -->
+
+      <main id="main" class="page">
+        <div class="shell">
+          <header class="page-heading">
+            <div class="page-heading__copy">
+              <p class="eyebrow" data-today>Today</p>
+              <h1><span data-greeting>Welcome</span>, <span data-greeting-name>there</span>.</h1>
+              <p class="page-heading__lede">
+                Here is the shape of the library today — what is moving, what is ready, and who is
+                borrowing.
+              </p>
+            </div>
+            <div class="page-heading__actions">
+              <a class="btn btn--secondary" href="./books.html">
+                Browse collection
+                <svg class="icon" aria-hidden="true">
+                  <use href="./icons.svg#icon-arrow-right"></use>
+                </svg>
+              </a>
+            </div>
+          </header>
+
+          <section class="stat-grid" aria-label="Library at a glance">
+            <article class="stat-card stat-card--books">
+              <div class="stat-card__top">
+                <span class="stat-icon" aria-hidden="true">
+                  <svg class="icon"><use href="./icons.svg#icon-book"></use></svg>
+                </span>
+                <span class="stat-kicker">Collection</span>
+              </div>
+              <p class="stat-value" data-stat="books">—</p>
+              <p class="stat-label">titles catalogued</p>
+              <p class="stat-detail" data-detail="books">Across the demo collection</p>
+            </article>
+
+            <article class="stat-card stat-card--members">
+              <div class="stat-card__top">
+                <span class="stat-icon" aria-hidden="true">
+                  <svg class="icon"><use href="./icons.svg#icon-users"></use></svg>
+                </span>
+                <span class="stat-kicker">Community</span>
+              </div>
+              <p class="stat-value" data-stat="members">—</p>
+              <p class="stat-label">active members</p>
+              <p class="stat-detail" data-detail="members">Students, lecturers and staff</p>
+            </article>
+
+            <article class="stat-card stat-card--available">
+              <div class="stat-card__top">
+                <span class="stat-icon" aria-hidden="true">
+                  <svg class="icon"><use href="./icons.svg#icon-check"></use></svg>
+                </span>
+                <span class="stat-kicker">On the shelf</span>
+              </div>
+              <p class="stat-value" data-stat="available">—</p>
+              <p class="stat-label">ready to borrow</p>
+              <p class="stat-detail" data-detail="available">Availability is calculated live</p>
+            </article>
+
+            <article class="stat-card stat-card--borrowed">
+              <div class="stat-card__top">
+                <span class="stat-icon" aria-hidden="true">
+                  <svg class="icon"><use href="./icons.svg#icon-logout"></use></svg>
+                </span>
+                <span class="stat-kicker">In circulation</span>
+              </div>
+              <p class="stat-value" data-stat="borrowed">—</p>
+              <p class="stat-label">currently on loan</p>
+              <p class="stat-detail" data-detail="borrowed">Reserved titles at the desk</p>
+            </article>
+          </section>
+
+          <div class="dashboard-grid">
+            <article class="panel panel--chart dashboard-grid__category">
+              <header class="panel__header">
+                <div>
+                  <p class="eyebrow">Balance</p>
+                  <h2>Books by category</h2>
+                </div>
+                <span class="panel__meta" data-category-meta>—</span>
+              </header>
+              <div class="chart-frame">
+                <canvas
+                  id="categoryChart"
+                  aria-label="Doughnut chart of books by category"
+                ></canvas>
+              </div>
+              <details class="chart-data">
+                <summary>View data table</summary>
+                <table>
+                  <caption class="sr-only">
+                    Books by category
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Category</th>
+                      <th scope="col">Books</th>
+                    </tr>
+                  </thead>
+                  <tbody id="categoryTableBody"></tbody>
+                </table>
+              </details>
+            </article>
+
+            <article class="panel panel--chart dashboard-grid__loans">
+              <header class="panel__header">
+                <div>
+                  <p class="eyebrow">Momentum</p>
+                  <h2>Monthly loans</h2>
+                </div>
+                <span class="panel__meta" data-loans-meta>May – Oct</span>
+              </header>
+              <div class="chart-frame">
+                <canvas id="loansChart" aria-label="Bar chart of monthly library loans"></canvas>
+              </div>
+              <details class="chart-data">
+                <summary>View data table</summary>
+                <table>
+                  <caption class="sr-only">
+                    Monthly loans from May to October
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Month</th>
+                      <th scope="col">Loans</th>
+                    </tr>
+                  </thead>
+                  <tbody id="loansTableBody"></tbody>
+                </table>
+              </details>
+            </article>
+
+            <article class="panel dashboard-grid__pulse">
+              <header class="panel__header">
+                <div>
+                  <p class="eyebrow">Collection pulse</p>
+                  <h2>Where the books are</h2>
+                </div>
+              </header>
+              <div class="pulse-summary">
+                <strong data-pulse-rate>—</strong>
+                <span>of the collection is available right now</span>
+              </div>
+              <div
+                class="pulse-bar"
+                id="pulseBar"
+                role="img"
+                aria-label="Collection status split"
+              ></div>
+              <ul class="pulse-list" id="pulseList"></ul>
+            </article>
+
+            <article class="panel dashboard-grid__activity">
+              <header class="panel__header">
+                <div>
+                  <p class="eyebrow">Desk log</p>
+                  <h2>Recent activity</h2>
+                </div>
+                <a class="panel__meta" href="./books.html">View books</a>
+              </header>
+              <ol class="activity-list" id="activityList"></ol>
+            </article>
+          </div>
+        </div>
+      </main>
+
+      <!-- include:footer -->
+    </div>
+
+    <noscript>
+      <p class="noscript">
+        JavaScript is required to open the protected BookNest dashboard. Please enable JavaScript
+        and sign in again.
+      </p>
+    </noscript>
+  </body>
+</html>

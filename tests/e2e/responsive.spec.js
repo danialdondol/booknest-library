@@ -11,7 +11,7 @@ test.describe('small screens', () => {
     );
     expect(overflow).toBeLessThanOrEqual(1);
     await expect(page.getByRole('navigation', { name: 'Primary' })).toBeVisible();
-    await expect(page.locator('.stat-card')).toHaveCount(4);
+    await expect(page.locator('.ledger__metric')).toHaveCount(3);
   });
 
   test('books render as readable cards without horizontal overflow', async ({ page }) => {

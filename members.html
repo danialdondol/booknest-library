@@ -7,7 +7,7 @@
       name="description"
       content="Browse BookNest Library members, search by name or ID, and review membership types and loan activity."
     />
-    <meta name="theme-color" content="#173d32" />
+    <meta name="theme-color" content="#16251f" />
     <meta name="color-scheme" content="light" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
@@ -27,16 +27,16 @@
         <div class="shell">
           <header class="page-heading">
             <div class="page-heading__copy">
-              <p class="eyebrow">Community</p>
-              <h1>The people behind the shelves.</h1>
+              <p class="eyebrow" data-folio="01">Readers</p>
+              <h1>Readers, not records.</h1>
               <p class="page-heading__lede">
-                Search the member register, filter by membership type and see how borrowing activity
-                is distributed across the library.
+                Find someone by name, email or member ID. Then see what kind of reader they are and
+                how much of the collection they have taken home.
               </p>
             </div>
             <div class="page-heading__actions">
               <a class="btn btn--secondary" href="./books.html">
-                Explore books
+                See the catalogue
                 <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-book"></use></svg>
               </a>
             </div>
@@ -88,7 +88,7 @@
               <h2 id="member-list-heading" class="sr-only">Member results</h2>
               <div class="results-bar">
                 <p id="memberCount" class="results-count" role="status" aria-live="polite"></p>
-                <p class="results-hint">Select a type to focus the register.</p>
+                <p class="results-hint">Narrow the register by membership.</p>
               </div>
 
               <div class="member-grid" id="memberGrid"></div>
@@ -97,7 +97,7 @@
                 <span class="empty-state__icon" aria-hidden="true">
                   <svg class="icon"><use href="./icons.svg#icon-users"></use></svg>
                 </span>
-                <h3>No members match that view</h3>
+                <h3>No reader matches that.</h3>
                 <p>Try a different name, member ID or membership type.</p>
               </div>
             </section>
@@ -106,10 +106,10 @@
               <div class="panel panel--chart">
                 <header class="panel__header">
                   <div>
-                    <p class="eyebrow">Composition</p>
-                    <h2 id="member-chart-heading">Membership mix</h2>
+                    <p class="eyebrow" data-folio="02">Who is reading</p>
+                    <h2 id="member-chart-heading">The register, by type</h2>
                   </div>
-                  <span class="panel__meta">All members</span>
+                  <span class="panel__meta">All readers</span>
                 </header>
                 <div class="chart-frame">
                   <canvas
@@ -135,11 +135,11 @@
 
                 <div class="mini-stats">
                   <div class="mini-stat">
-                    <span>Total loans</span>
+                    <span>Loans logged</span>
                     <strong data-member-loans>—</strong>
                   </div>
                   <div class="mini-stat">
-                    <span>Avg / member</span>
+                    <span>Per reader</span>
                     <strong data-member-average>—</strong>
                   </div>
                 </div>
@@ -149,8 +149,8 @@
 
           <p class="page-note">
             <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-info"></use></svg>
-            Member records are sample data used for the IMS566 demonstration. Contact details use
-            the reserved <code>example.edu</code> domain.
+            Sample register for the IMS566 demonstration. Contact details use the reserved
+            <code>example.edu</code> domain.
           </p>
         </div>
       </main>

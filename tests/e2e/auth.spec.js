@@ -7,7 +7,7 @@ test.describe('authentication', () => {
     for (const path of ['/dashboard.html', '/books.html', '/members.html']) {
       await page.goto(path);
       await expect(page).toHaveURL(/index\.html$/);
-      await expect(page.getByRole('heading', { name: 'Welcome back' })).toBeVisible();
+      await expect(page.getByRole('heading', { name: 'Sign in to the desk' })).toBeVisible();
     }
   });
 

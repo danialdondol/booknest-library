@@ -12,6 +12,15 @@ All notable changes to BookNest are documented here. The format follows
 - Create/edit flows for books and members.
 - Visual regression tests.
 
+### Changed
+
+- Replaced the uniform card dashboard with the Reading Room Ledger design: asymmetric ledger strip,
+  ruled panels, offset print shadows, square status marks and editorial chart styling.
+- Rewrote interface copy around actual staff tasks rather than dashboard shorthand.
+- Added a numbered folio system, accession stamp, desk note and custom micro-interactions.
+- Refreshed all documentation screenshots.
+- Added a 320 px responsive regression test for all four pages.
+
 ## [0.1.0] - 2026-11-04
 
 ### Added

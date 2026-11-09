@@ -5,7 +5,7 @@
 **A calm, accessible small-library desk for staff who need answers, not another dashboard.**
 
 ![Version](https://img.shields.io/badge/version-0.1.0-2f6b54)
-![Tests](https://img.shields.io/badge/tests-96_passing-2f6b54)
+![Tests](https://img.shields.io/badge/tests-97_passing-2f6b54)
 ![License](https://img.shields.io/badge/license-MIT-d6a756)
 ![Node](https://img.shields.io/badge/node-20.19%2B-4d7f8f)
 
@@ -14,7 +14,7 @@
 
 **Live demo:** <https://danialdondol.github.io/booknest-library/>
 
-[Quickstart](#quickstart) · [Live demo](https://danialdondol.github.io/booknest-library/) · [Features](#features) · [Architecture](#architecture) · [Quality](#quality-gates) · [Docs](docs/) · [Roadmap](#roadmap)
+[Quickstart](#quickstart) · [Live demo](https://danialdondol.github.io/booknest-library/) · [Features](#features) · [Architecture](#architecture) · [Design](docs/DESIGN.md) · [Quality](#quality-gates) · [Docs](docs/) · [Roadmap](#roadmap)
 
 </div>
 
@@ -88,8 +88,9 @@ is needed after installation.
 - **Accessible charts** — every canvas has a text summary and a `<details>` data-table fallback.
 - **Responsive by design** — desktop table becomes readable record cards on small screens; no
   horizontal page overflow at 390 px.
-- **Distinctive visual system** — warm paper, deep green, Fraunces display type and Manrope body
-  type, all self-hosted; no CDN dependency.
+- **Reading Room Ledger design** — bone paper, bottle-green ink, rust actions, oversized ledger
+  numerals, ruled sections, folio labels and offset print shadows. Custom visual direction, not a
+  component-library skin; see [the design notes](docs/DESIGN.md).
 - **Safe DOM rendering** — all data is written with `textContent`/`createElement`, never interpolated
   into HTML.
 - **Quality gates** — ESLint, Prettier, unit coverage thresholds, Playwright E2E, axe scans, and a
@@ -176,7 +177,7 @@ Current results:
 | Gate             | Result                                                       |
 | ---------------- | ------------------------------------------------------------ |
 | Unit tests       | **71 passed**                                                |
-| E2E / browser    | **25 passed**                                                |
+| E2E / browser    | **26 passed**                                                |
 | Line coverage    | **97.25%** on the pure domain/auth layer                     |
 | Accessibility    | **0 serious/critical** axe violations on all pages + dialog  |
 | Lint/format      | ESLint and Prettier clean                                    |

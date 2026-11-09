@@ -7,7 +7,7 @@
       name="description"
       content="BookNest Library dashboard with collection statistics, visual summaries and recent activity."
     />
-    <meta name="theme-color" content="#173d32" />
+    <meta name="theme-color" content="#16251f" />
     <meta name="color-scheme" content="light" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
@@ -30,13 +30,12 @@
               <p class="eyebrow" data-today>Today</p>
               <h1><span data-greeting>Welcome</span>, <span data-greeting-name>there</span>.</h1>
               <p class="page-heading__lede">
-                Here is the shape of the library today — what is moving, what is ready, and who is
-                borrowing.
+                What is out, what is back, and what needs a hand today. Pull up a chair.
               </p>
             </div>
             <div class="page-heading__actions">
               <a class="btn btn--secondary" href="./books.html">
-                Browse collection
+                Open the catalogue
                 <svg class="icon" aria-hidden="true">
                   <use href="./icons.svg#icon-arrow-right"></use>
                 </svg>
@@ -44,62 +43,45 @@
             </div>
           </header>
 
-          <section class="stat-grid" aria-label="Library at a glance">
-            <article class="stat-card stat-card--books">
-              <div class="stat-card__top">
-                <span class="stat-icon" aria-hidden="true">
-                  <svg class="icon"><use href="./icons.svg#icon-book"></use></svg>
-                </span>
-                <span class="stat-kicker">Collection</span>
-              </div>
-              <p class="stat-value" data-stat="books">—</p>
-              <p class="stat-label">titles catalogued</p>
-              <p class="stat-detail" data-detail="books">Across the demo collection</p>
-            </article>
+          <section class="ledger" aria-label="Library at a glance">
+            <div class="ledger__lead">
+              <p class="ledger__index">01 / The collection</p>
+              <p class="ledger__value" data-stat="books">—</p>
+              <p class="ledger__caption">titles on file</p>
+              <p class="ledger__detail" data-detail="books">Across the demo collection</p>
+            </div>
 
-            <article class="stat-card stat-card--members">
-              <div class="stat-card__top">
-                <span class="stat-icon" aria-hidden="true">
-                  <svg class="icon"><use href="./icons.svg#icon-users"></use></svg>
-                </span>
-                <span class="stat-kicker">Community</span>
+            <div class="ledger__metrics">
+              <div class="ledger__metric">
+                <span class="ledger__label">Readers</span>
+                <span class="ledger__metric-value" data-stat="members">—</span>
+                <span class="ledger__metric-detail" data-detail="members"
+                  >Students, lecturers and staff</span
+                >
               </div>
-              <p class="stat-value" data-stat="members">—</p>
-              <p class="stat-label">active members</p>
-              <p class="stat-detail" data-detail="members">Students, lecturers and staff</p>
-            </article>
-
-            <article class="stat-card stat-card--available">
-              <div class="stat-card__top">
-                <span class="stat-icon" aria-hidden="true">
-                  <svg class="icon"><use href="./icons.svg#icon-check"></use></svg>
-                </span>
-                <span class="stat-kicker">On the shelf</span>
+              <div class="ledger__metric">
+                <span class="ledger__label">On the shelf</span>
+                <span class="ledger__metric-value" data-stat="available">—</span>
+                <span class="ledger__metric-detail" data-detail="available"
+                  >Availability is calculated live</span
+                >
               </div>
-              <p class="stat-value" data-stat="available">—</p>
-              <p class="stat-label">ready to borrow</p>
-              <p class="stat-detail" data-detail="available">Availability is calculated live</p>
-            </article>
-
-            <article class="stat-card stat-card--borrowed">
-              <div class="stat-card__top">
-                <span class="stat-icon" aria-hidden="true">
-                  <svg class="icon"><use href="./icons.svg#icon-logout"></use></svg>
-                </span>
-                <span class="stat-kicker">In circulation</span>
+              <div class="ledger__metric">
+                <span class="ledger__label">Out on loan</span>
+                <span class="ledger__metric-value" data-stat="borrowed">—</span>
+                <span class="ledger__metric-detail" data-detail="borrowed"
+                  >Reserved titles at the desk</span
+                >
               </div>
-              <p class="stat-value" data-stat="borrowed">—</p>
-              <p class="stat-label">currently on loan</p>
-              <p class="stat-detail" data-detail="borrowed">Reserved titles at the desk</p>
-            </article>
+            </div>
           </section>
 
           <div class="dashboard-grid">
             <article class="panel panel--chart dashboard-grid__category">
               <header class="panel__header">
                 <div>
-                  <p class="eyebrow">Balance</p>
-                  <h2>Books by category</h2>
+                  <p class="eyebrow" data-folio="02">The shelves</p>
+                  <h2>What we hold</h2>
                 </div>
                 <span class="panel__meta" data-category-meta>—</span>
               </header>
@@ -108,9 +90,13 @@
                   id="categoryChart"
                   aria-label="Doughnut chart of books by category"
                 ></canvas>
+                <div class="chart-center" aria-hidden="true">
+                  <strong data-chart-total>—</strong>
+                  <span>titles</span>
+                </div>
               </div>
               <details class="chart-data">
-                <summary>View data table</summary>
+                <summary>Open data table</summary>
                 <table>
                   <caption class="sr-only">
                     Books by category
@@ -129,8 +115,8 @@
             <article class="panel panel--chart dashboard-grid__loans">
               <header class="panel__header">
                 <div>
-                  <p class="eyebrow">Momentum</p>
-                  <h2>Monthly loans</h2>
+                  <p class="eyebrow" data-folio="03">Borrowing rhythm</p>
+                  <h2>Loans, month by month</h2>
                 </div>
                 <span class="panel__meta" data-loans-meta>May – Oct</span>
               </header>
@@ -138,7 +124,7 @@
                 <canvas id="loansChart" aria-label="Bar chart of monthly library loans"></canvas>
               </div>
               <details class="chart-data">
-                <summary>View data table</summary>
+                <summary>Open data table</summary>
                 <table>
                   <caption class="sr-only">
                     Monthly loans from May to October
@@ -157,13 +143,13 @@
             <article class="panel dashboard-grid__pulse">
               <header class="panel__header">
                 <div>
-                  <p class="eyebrow">Collection pulse</p>
-                  <h2>Where the books are</h2>
+                  <p class="eyebrow" data-folio="04">Shelf balance</p>
+                  <h2>Where the copies are</h2>
                 </div>
               </header>
               <div class="pulse-summary">
                 <strong data-pulse-rate>—</strong>
-                <span>of the collection is available right now</span>
+                <span>is on the shelf right now</span>
               </div>
               <div
                 class="pulse-bar"
@@ -177,10 +163,10 @@
             <article class="panel dashboard-grid__activity">
               <header class="panel__header">
                 <div>
-                  <p class="eyebrow">Desk log</p>
-                  <h2>Recent activity</h2>
+                  <p class="eyebrow" data-folio="05">Today at the desk</p>
+                  <h2>What just happened</h2>
                 </div>
-                <a class="panel__meta" href="./books.html">View books</a>
+                <a class="panel__meta" href="./books.html">Open catalogue</a>
               </header>
               <ol class="activity-list" id="activityList"></ol>
             </article>

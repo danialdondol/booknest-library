@@ -7,7 +7,7 @@
       name="description"
       content="Sign in to BookNest Library, a calm small-library management demo for staff."
     />
-    <meta name="theme-color" content="#173d32" />
+    <meta name="theme-color" content="#16251f" />
     <meta name="color-scheme" content="light" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
@@ -41,28 +41,37 @@
               <span class="brand__tag">Library desk</span>
             </span>
           </a>
-          <span class="story-badge">Demo workspace</span>
+          <span class="story-badge">Reading room · open</span>
         </div>
 
         <div class="login-story__body">
-          <p class="eyebrow eyebrow--light">Small library, calm operations</p>
-          <h1 id="story-title">Every book in its place. Every member in the loop.</h1>
+          <p class="eyebrow eyebrow--light" data-folio="01">Staff entrance</p>
+          <h1 id="story-title">A <em>quiet</em> desk for a busy library.</h1>
           <p class="login-story__lede">
-            A thoughtfully simple desk for browsing the collection, understanding demand and keeping
-            the shelves moving.
+            Check what is on the shelf, see who is reading it, and keep the catalogue moving. No
+            spreadsheets, no hunting through tabs.
           </p>
           <ul class="story-points">
             <li>
-              <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-book"></use></svg>
-              <span><strong>One clear catalogue.</strong> Search, filter and sort 16 titles.</span>
+              <span class="story-points__number">01</span>
+              <div>
+                <strong>The catalogue</strong>
+                <p>16 titles, searchable by author, subject or shelf code.</p>
+              </div>
             </li>
             <li>
-              <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-users"></use></svg>
-              <span><strong>Members at a glance.</strong> See who borrows and how often.</span>
+              <span class="story-points__number">02</span>
+              <div>
+                <strong>The readers</strong>
+                <p>12 members and the loans that keep the shelves moving.</p>
+              </div>
             </li>
             <li>
-              <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-spark"></use></svg>
-              <span><strong>Useful signals.</strong> Live statistics and visual summaries.</span>
+              <span class="story-points__number">03</span>
+              <div>
+                <strong>The day’s work</strong>
+                <p>What is out, what is back, what is waiting at the desk.</p>
+              </div>
             </li>
           </ul>
         </div>
@@ -77,23 +86,24 @@
           <span class="spine spine--7">Ideas</span>
         </div>
 
-        <blockquote class="story-quote">
-          “A library is not a luxury but one of the necessities of life.”
-          <span>— Henry Ward Beecher</span>
-        </blockquote>
+        <div class="story-note">
+          <span class="story-note__label">Desk note · 09:15</span>
+          <p>Three returns in the chute. Two reservations waiting. The coffee is still warm.</p>
+        </div>
       </section>
 
       <section class="login-panel" aria-labelledby="login-title">
         <div class="login-card">
+          <span class="login-card__stamp" aria-hidden="true">Acc. 2026 / 11</span>
           <div class="demo-flag">
             <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-shield"></use></svg>
-            Demo mode — no real data
+            Sample data only
           </div>
 
           <header>
-            <p class="eyebrow">Library desk</p>
-            <h2 id="login-title">Welcome back</h2>
-            <p>Sign in to review today’s collection.</p>
+            <p class="eyebrow">Staff access</p>
+            <h2 id="login-title">Sign in to the desk</h2>
+            <p>Two demo accounts are waiting below.</p>
           </header>
 
           <div id="loginError" class="form-alert" role="alert" hidden></div>
@@ -112,7 +122,7 @@
                 aria-describedby="usernameHint"
               />
               <p class="field-hint" id="usernameHint">
-                Use <code>admin</code> or <code>librarian</code>.
+                Try <code>admin</code> or <code>librarian</code>.
               </p>
             </div>
 
@@ -147,7 +157,7 @@
           </form>
 
           <div class="demo-card">
-            <span class="demo-card__label">Demo access</span>
+            <span class="demo-card__label">Two ways in</span>
             <div class="demo-card__credentials">
               <code>admin</code><span>/</span><code>admin123</code>
               <span aria-hidden="true">·</span>
@@ -160,8 +170,7 @@
 
           <p class="login-footnote">
             <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-info"></use></svg>
-            Session-only demo authentication. Credentials are public and must not protect real
-            library data.
+            Front-end demo. The credentials are public; do not use this sign-in for real records.
           </p>
         </div>
         <p class="login-copyright">BookNest v0.1.0 · IMS566 project</p>

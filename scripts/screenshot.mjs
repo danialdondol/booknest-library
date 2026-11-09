@@ -30,6 +30,7 @@ try {
   const desktop = await browser.newContext({
     viewport: { width: 1440, height: 960 },
     deviceScaleFactor: 1,
+    reducedMotion: 'reduce',
   });
   const page = await desktop.newPage();
 
@@ -57,6 +58,7 @@ try {
     viewport: { width: 390, height: 844 },
     deviceScaleFactor: 1,
     isMobile: true,
+    reducedMotion: 'reduce',
   });
   const mobilePage = await mobile.newPage();
   await mobilePage.goto(`${base}/`, { waitUntil: 'networkidle' });

@@ -1,16 +1,16 @@
 export const CHART_PALETTE = Object.freeze([
-  '#2f6b54',
-  '#d6a756',
-  '#b85c3b',
-  '#4d7f8f',
-  '#8b6d9c',
-  '#6f7d4e',
-  '#c47f59',
+  '#9f3f27',
+  '#c59a43',
+  '#3d5f4d',
+  '#526f78',
+  '#7a5a68',
+  '#5e6d4f',
+  '#a86645',
 ]);
 
-const INK = '#1c302a';
-const MUTED = '#5f6b63';
-const BORDER = 'rgba(28, 48, 42, 0.09)';
+const INK = '#16251f';
+const MUTED = '#56625b';
+const BORDER = 'rgba(22, 37, 31, 0.12)';
 const FONT = '"Manrope Variable", "Segoe UI", sans-serif';
 
 const baseOptions = (reducedMotion, legendPosition) => ({
@@ -25,9 +25,9 @@ const baseOptions = (reducedMotion, legendPosition) => ({
       labels: {
         color: MUTED,
         usePointStyle: true,
-        pointStyle: 'circle',
-        boxWidth: 8,
-        boxHeight: 8,
+        pointStyle: 'rect',
+        boxWidth: 7,
+        boxHeight: 7,
         padding: 18,
         font: { family: FONT, size: 12, weight: '500' },
       },
@@ -37,7 +37,7 @@ const baseOptions = (reducedMotion, legendPosition) => ({
       titleColor: '#fffdf8',
       bodyColor: '#fffdf8',
       padding: 12,
-      cornerRadius: 10,
+      cornerRadius: 2,
       displayColors: true,
       titleFont: { family: FONT, size: 12, weight: '700' },
       bodyFont: { family: FONT, size: 12 },
@@ -66,10 +66,10 @@ export function categoryChartConfig(labels, values, { reducedMotion = false } = 
         {
           data: values,
           backgroundColor: CHART_PALETTE,
-          borderColor: '#fffdf8',
-          borderWidth: 3,
-          hoverOffset: 6,
-          spacing: 1,
+          borderColor: '#fbf7ee',
+          borderWidth: 2,
+          hoverOffset: 4,
+          spacing: 0,
         },
       ],
     },
@@ -90,11 +90,11 @@ export function loansChartConfig(labels, values, { reducedMotion = false } = {})
         {
           label: 'Books borrowed',
           data: values,
-          backgroundColor: '#2f6b54',
-          hoverBackgroundColor: '#245643',
-          borderRadius: 7,
+          backgroundColor: '#9f3f27',
+          hoverBackgroundColor: '#7e2f1e',
+          borderRadius: 0,
           borderSkipped: false,
-          maxBarThickness: 48,
+          maxBarThickness: 38,
         },
       ],
     },
@@ -116,10 +116,10 @@ export function memberTypeChartConfig(labels, values, { reducedMotion = false } 
       datasets: [
         {
           data: values,
-          backgroundColor: ['#2f6b54', '#d6a756', '#4d7f8f'],
-          borderColor: '#fffdf8',
-          borderWidth: 3,
-          hoverOffset: 6,
+          backgroundColor: ['#3d5f4d', '#c59a43', '#526f78'],
+          borderColor: '#fbf7ee',
+          borderWidth: 2,
+          hoverOffset: 4,
         },
       ],
     },

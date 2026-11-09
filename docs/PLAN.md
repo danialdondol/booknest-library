@@ -20,9 +20,9 @@ accessible front-end engineering.
 | BN-004 | Dashboard with live stats, charts, pulse and activity            | `dashboard.html`, `src/pages/dashboard.js`                         |
 | BN-005 | Searchable, filterable, sortable catalogue with URL state        | `books.html`, `src/lib/books.js`, `tests/e2e/books.spec.js`        |
 | BN-006 | Searchable member register and membership summary                | `members.html`, `src/lib/members.js`                               |
-| BN-007 | Accessibility and E2E quality gates                              | `tests/e2e/`, axe scans, 25 passing browser tests                  |
+| BN-007 | Accessibility and E2E quality gates                              | `tests/e2e/`, axe scans, 26 passing browser tests                  |
 | BN-008 | Documentation, CI, Pages deployment, templates and release notes | `README.md`, `docs/`, `.github/`, `CHANGELOG.md`                   |
-| BN-009 | Visual identity and screenshots                                  | `src/styles/`, `docs/screenshots/`                                 |
+| BN-009 | Reading Room Ledger visual redesign and screenshots              | `docs/DESIGN.md`, `src/styles/`, `docs/screenshots/`               |
 
 ## Acceptance criteria
 
@@ -36,6 +36,7 @@ accessible front-end engineering.
 - [x] Unit tests, coverage thresholds, E2E tests, axe scans, lint and build pass.
 - [x] No secrets or real personal data are committed.
 - [x] README includes pitch, screenshot, quickstart, features, architecture and roadmap.
+- [x] UI has a distinct Reading Room Ledger direction, asymmetric composition and task-specific copy.
 - [x] CI, Pages deployment, Dependabot and community files are present.
 - [x] GitHub remote, issues, project board, pull-request workflow and published release.
       Repository: <https://github.com/danialdondol/booknest-library> · Live:
@@ -52,6 +53,6 @@ accessible front-end engineering.
 ## Verification snapshots
 
 - Unit: 71 passed, 97.25% lines on `src/lib/**`.
-- Browser: 25 passed.
+- Browser: 26 passed.
 - Accessibility: 0 serious/critical axe violations on login, dashboard, books, open dialog, members.
-- Build: 5 pages, 18 emitted assets, no external HTTP asset URLs.
+- Build: 5 pages, 21 emitted assets, no external HTTP asset URLs.

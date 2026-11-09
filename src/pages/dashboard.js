@@ -22,8 +22,9 @@ import { formatLongDate, getGreeting, pluralize } from '../lib/format.js';
 import { guardPage } from '../lib/guard.js';
 
 function setText(selector, value) {
-  const node = document.querySelector(selector);
-  if (node) node.textContent = String(value);
+  for (const node of document.querySelectorAll(selector)) {
+    node.textContent = String(value);
+  }
 }
 
 function renderStats() {
@@ -38,14 +39,12 @@ function renderStats() {
   setText('[data-stat="available"]', stats.available);
   setText('[data-stat="borrowed"]', stats.borrowed);
 
-  setText(
-    '[data-detail="books"]',
-    `Across ${pluralize(categories.length, 'category', 'categories')}`,
-  );
+  setText('[data-detail="books"]', `Across ${pluralize(categories.length, 'subject', 'subjects')}`);
   setText('[data-detail="members"]', `${students} students · ${lecturers} lecturers`);
   setText('[data-detail="available"]', `${stats.availabilityRate}% of the collection`);
   setText('[data-detail="borrowed"]', `${stats.reserved} reserved at the desk`);
-  setText('[data-category-meta]', pluralize(categories.length, 'category', 'categories'));
+  setText('[data-category-meta]', pluralize(categories.length, 'subject', 'subjects'));
+  setText('[data-chart-total]', stats.total);
 
   const peak = getLoanPeak(MONTHLY_LOANS);
   setText('[data-loans-meta]', `Peak: ${peak.label} · ${peak.value}`);

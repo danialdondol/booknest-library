@@ -93,7 +93,7 @@ function renderRows(rows) {
     action.dataset.openBook = book.id;
     action.setAttribute('aria-haspopup', 'dialog');
     action.setAttribute('aria-label', `View details for ${book.title}`);
-    action.textContent = 'Details';
+    action.textContent = 'Open';
 
     tr.append(
       titleCell,

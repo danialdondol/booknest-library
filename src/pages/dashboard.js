@@ -5,9 +5,7 @@ import {
   renderChartTable,
   setChartLabel,
 } from '../components/charts.js';
-import { BOOKS } from '../data/books.js';
 import { ACTIVITY, MONTHLY_LOANS } from '../data/dashboard.js';
-import { MEMBERS } from '../data/members.js';
 import { categoryChartConfig, loansChartConfig } from '../lib/chart-configs.js';
 import {
   getActivityIcon,
@@ -19,7 +17,11 @@ import {
   getMemberBreakdown,
 } from '../lib/dashboard.js';
 import { formatLongDate, getGreeting, pluralize } from '../lib/format.js';
+import { getStoredBooks, getStoredMembers } from '../lib/library-records.js';
 import { guardPage } from '../lib/guard.js';
+
+const books = getStoredBooks();
+const members = getStoredMembers();
 
 function setText(selector, value) {
   for (const node of document.querySelectorAll(selector)) {
@@ -28,9 +30,9 @@ function setText(selector, value) {
 }
 
 function renderStats() {
-  const stats = getLibraryStats(BOOKS, MEMBERS);
-  const categories = getCategoryCounts(BOOKS);
-  const memberTypes = getMemberBreakdown(MEMBERS);
+  const stats = getLibraryStats(books, members);
+  const categories = getCategoryCounts(books);
+  const memberTypes = getMemberBreakdown(members);
   const students = memberTypes.find((entry) => entry.type === 'Student')?.count ?? 0;
   const lecturers = memberTypes.find((entry) => entry.type === 'Lecturer')?.count ?? 0;
 
@@ -57,7 +59,7 @@ function renderPulse() {
   const list = document.getElementById('pulseList');
   if (!bar || !list) return;
 
-  const pulse = getCollectionPulse(BOOKS);
+  const pulse = getCollectionPulse(books);
   bar.replaceChildren();
   list.replaceChildren();
 
@@ -131,7 +133,7 @@ function renderActivity() {
 
 function renderCharts() {
   const reducedMotion = prefersReducedMotion();
-  const categories = getCategoryCounts(BOOKS);
+  const categories = getCategoryCounts(books);
   const categoryLabels = categories.map((entry) => entry.category);
   const categoryValues = categories.map((entry) => entry.count);
 

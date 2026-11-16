@@ -52,7 +52,7 @@ accessible front-end engineering.
 
 ## Verification snapshots
 
-- Unit: 71 passed, 97.25% lines on `src/lib/**`.
-- Browser: 26 passed.
+- Unit: 78 passed, 97.57% lines on `src/lib/**`.
+- Browser: 28 passed.
 - Accessibility: 0 serious/critical axe violations on login, dashboard, books, open dialog, members.
 - Build: 5 pages, 21 emitted assets, no external HTTP asset URLs.

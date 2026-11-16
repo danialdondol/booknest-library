@@ -1,6 +1,5 @@
 import { initChrome, revealApp } from '../components/chrome.js';
 import { createStatusBadge } from '../components/status.js';
-import { BOOKS } from '../data/books.js';
 import {
   applyBookView,
   DEFAULT_BOOK_STATE,
@@ -10,8 +9,10 @@ import {
 } from '../lib/books.js';
 import { pluralize } from '../lib/format.js';
 import { guardPage } from '../lib/guard.js';
+import { createBookRecord, getStoredBooks } from '../lib/library-records.js';
 
-const categories = getCategories(BOOKS);
+let books = getStoredBooks();
+let categories = getCategories(books);
 let state = parseBookQuery(window.location.search, { categories });
 let lastDialogTrigger = null;
 
@@ -22,11 +23,19 @@ function setText(selector, value) {
 
 function fillCategoryOptions() {
   const select = document.getElementById('categoryFilter');
+  const list = document.getElementById('bookCategoryOptions');
+  while (select.options.length > 1) select.remove(1);
+  list.replaceChildren();
+
   for (const category of categories) {
     const option = document.createElement('option');
     option.value = category;
     option.textContent = category;
     select.append(option);
+
+    const suggestion = document.createElement('option');
+    suggestion.value = category;
+    list.append(suggestion);
   }
 }
 
@@ -111,7 +120,7 @@ function renderRows(rows) {
 }
 
 function render({ syncUrl = true } = {}) {
-  const rows = applyBookView(BOOKS, state);
+  const rows = applyBookView(books, state);
   const tableWrap = document.getElementById('booksTableWrap');
   const empty = document.getElementById('emptyBooks');
   const count = document.getElementById('bookCount');
@@ -120,9 +129,9 @@ function render({ syncUrl = true } = {}) {
   updateSortHeaders();
 
   const queryLabel =
-    rows.length === BOOKS.length
+    rows.length === books.length
       ? `${pluralize(rows.length, 'book')} in the collection`
-      : `${rows.length} of ${BOOKS.length} books shown`;
+      : `${rows.length} of ${books.length} books shown`;
   count.textContent = queryLabel;
 
   tableWrap.hidden = rows.length === 0;
@@ -161,6 +170,32 @@ function openBookDialog(book, trigger) {
   dialog.showModal();
 }
 
+function openAddBookDialog() {
+  addBookDialogReset();
+  addBookDialog.showModal();
+  document.getElementById('newBookTitle').focus();
+}
+
+const addBookDialog = document.getElementById('addBookDialog');
+const addBookForm = document.getElementById('addBookForm');
+const addBookError = document.getElementById('addBookError');
+const addBookNotice = document.getElementById('bookNotice');
+
+function addBookDialogReset() {
+  addBookForm.reset();
+  addBookError.hidden = true;
+  addBookError.textContent = '';
+  document.getElementById('newBookYear').value = String(new Date().getFullYear());
+  document.getElementById('newBookStatus').value = 'Available';
+  document.getElementById('newBookShelf').value = 'NEW-01';
+  document.getElementById('newBookCopies').value = '1';
+}
+
+function showBookNotice(message) {
+  addBookNotice.textContent = message;
+  addBookNotice.hidden = false;
+}
+
 function wireEvents() {
   const search = document.getElementById('bookSearch');
   const clear = document.querySelector('[data-clear-search]');
@@ -168,6 +203,9 @@ function wireEvents() {
   const status = document.getElementById('statusFilter');
   const tbody = document.getElementById('booksBody');
   const dialog = document.getElementById('bookDialog');
+  const addButton = document.querySelector('[data-add-book]');
+  const addClose = addBookDialog.querySelector('[data-close-add-book]');
+  const addCancel = addBookDialog.querySelector('[data-cancel-add-book]');
 
   search.addEventListener('input', () => {
     state.query = search.value.slice(0, 100);
@@ -211,7 +249,7 @@ function wireEvents() {
   tbody.addEventListener('click', (event) => {
     const trigger = event.target.closest('[data-open-book]');
     if (!trigger) return;
-    const book = BOOKS.find((entry) => entry.id === trigger.dataset.openBook);
+    const book = books.find((entry) => entry.id === trigger.dataset.openBook);
     if (book) openBookDialog(book, trigger);
   });
 
@@ -222,6 +260,33 @@ function wireEvents() {
   dialog.addEventListener('close', () => {
     lastDialogTrigger?.focus();
     lastDialogTrigger = null;
+  });
+
+  addButton.addEventListener('click', openAddBookDialog);
+  addClose.addEventListener('click', () => addBookDialog.close());
+  addCancel.addEventListener('click', () => addBookDialog.close());
+  addBookDialog.addEventListener('click', (event) => {
+    if (event.target === addBookDialog) addBookDialog.close();
+  });
+  addBookDialog.addEventListener('close', () => addButton.focus());
+
+  addBookForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    addBookError.hidden = true;
+
+    try {
+      const book = createBookRecord(Object.fromEntries(new FormData(addBookForm)));
+      books = getStoredBooks();
+      categories = getCategories(books);
+      fillCategoryOptions();
+      syncControls();
+      render();
+      addBookDialog.close();
+      showBookNotice(`“${book.title}” was added to the catalogue.`);
+    } catch (error) {
+      addBookError.textContent = error.message;
+      addBookError.hidden = false;
+    }
   });
 
   window.addEventListener('popstate', () => {
@@ -235,6 +300,7 @@ const session = guardPage();
 if (session) {
   initChrome(session, 'books');
   fillCategoryOptions();
+  addBookDialogReset();
   syncControls();
   wireEvents();
   render({ syncUrl: false });

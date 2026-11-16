@@ -9,8 +9,14 @@ All notable changes to BookNest are documented here. The format follows
 ### Planned
 
 - Server-backed authentication and persistent loan workflows.
-- Create/edit flows for books and members.
+- Edit/delete flows for books and members.
 - Visual regression tests.
+
+### Added
+
+- One-click Admin and Librarian quick-fill buttons on the sign-in page.
+- Accessible add-book and add-member dialogs that persist new records in browser localStorage on top
+  of the hardcoded seed data.
 
 ### Changed
 

@@ -19,6 +19,12 @@ test.describe('accessibility', () => {
     await expect(page.locator('#booksBody tr')).toHaveCount(16);
     await analyzePage(page);
 
+    await page.getByRole('button', { name: 'Add a book' }).click();
+    const addDialog = page.getByRole('dialog', { name: 'Add a book' });
+    await expect(addDialog).toBeVisible();
+    await analyzePage(page);
+    await addDialog.getByRole('button', { name: 'Close add book form' }).click();
+
     await page.getByRole('button', { name: 'View details for Clean Code' }).click();
     await expect(page.getByRole('dialog')).toBeVisible();
     await analyzePage(page);
@@ -28,6 +34,11 @@ test.describe('accessibility', () => {
     await signIn(page);
     await page.goto('/members.html');
     await expect(page.locator('#memberGrid .member-card')).toHaveCount(12);
+    await analyzePage(page);
+
+    await page.getByRole('button', { name: 'Add a member' }).click();
+    const addDialog = page.getByRole('dialog', { name: 'Add a member' });
+    await expect(addDialog).toBeVisible();
     await analyzePage(page);
   });
 });

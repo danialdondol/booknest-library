@@ -35,6 +35,7 @@
               </p>
             </div>
             <div class="page-heading__actions">
+              <button class="btn btn--primary" type="button" data-add-book>Add a book</button>
               <a class="btn btn--secondary" href="./dashboard.html">
                 Back to the desk
                 <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-grid"></use></svg>
@@ -100,6 +101,7 @@
             <p class="results-count" id="bookCount" role="status" aria-live="polite"></p>
             <p class="results-hint">Use a column heading to reorder the shelf.</p>
           </div>
+          <p class="record-notice" id="bookNotice" role="status" hidden></p>
 
           <section class="panel panel--flush" aria-labelledby="collection-heading">
             <h2 id="collection-heading" class="sr-only">Book collection</h2>
@@ -162,8 +164,8 @@
 
           <p class="page-note">
             <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-info"></use></svg>
-            Catalogue data. Nothing you change here is saved; the records reset with the source
-            files.
+            Your additions are stored in this browser. They stay here until browser storage is
+            cleared.
           </p>
         </div>
       </main>
@@ -208,6 +210,123 @@
           </dl>
         </div>
       </dialog>
+
+      <dialog class="book-dialog record-dialog" id="addBookDialog" aria-labelledby="addBookTitle">
+        <div class="book-dialog__header">
+          <p class="eyebrow">New accession</p>
+          <button
+            class="dialog-close"
+            type="button"
+            data-close-add-book
+            aria-label="Close add book form"
+          >
+            <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-close"></use></svg>
+          </button>
+        </div>
+        <div class="book-dialog__body">
+          <h2 id="addBookTitle">Add a book</h2>
+          <p class="form-intro">Add a title to the shelf. It will be saved in this browser.</p>
+          <form class="record-form" id="addBookForm">
+            <div class="form-grid">
+              <div class="field field--full">
+                <label for="newBookTitle">Title</label>
+                <input
+                  id="newBookTitle"
+                  name="title"
+                  type="text"
+                  required
+                  maxlength="120"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="field">
+                <label for="newBookAuthor">Author</label>
+                <input
+                  id="newBookAuthor"
+                  name="author"
+                  type="text"
+                  required
+                  maxlength="80"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="field">
+                <label for="newBookCategory">Category</label>
+                <input
+                  id="newBookCategory"
+                  name="category"
+                  type="text"
+                  list="bookCategoryOptions"
+                  required
+                  maxlength="40"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="field">
+                <label for="newBookYear">Published</label>
+                <input
+                  id="newBookYear"
+                  name="year"
+                  type="number"
+                  min="1000"
+                  max="2100"
+                  required
+                  inputmode="numeric"
+                />
+              </div>
+              <div class="field">
+                <label for="newBookStatus">Status</label>
+                <select id="newBookStatus" name="status" required>
+                  <option value="Available">Available</option>
+                  <option value="Borrowed">Borrowed</option>
+                  <option value="Reserved">Reserved</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="newBookShelf">Shelf code</label>
+                <input
+                  id="newBookShelf"
+                  name="shelf"
+                  type="text"
+                  required
+                  maxlength="12"
+                  autocomplete="off"
+                  placeholder="NEW-01"
+                />
+              </div>
+              <div class="field">
+                <label for="newBookCopies">Copies</label>
+                <input
+                  id="newBookCopies"
+                  name="copies"
+                  type="number"
+                  min="1"
+                  max="99"
+                  required
+                  inputmode="numeric"
+                />
+              </div>
+              <div class="field field--full">
+                <label for="newBookSummary">Summary</label>
+                <textarea
+                  id="newBookSummary"
+                  name="summary"
+                  rows="3"
+                  maxlength="300"
+                  placeholder="Optional short description"
+                ></textarea>
+              </div>
+            </div>
+            <p class="form-alert" id="addBookError" role="alert" hidden></p>
+            <div class="form-actions">
+              <button class="btn btn--quiet" type="button" data-cancel-add-book>Cancel</button>
+              <button class="btn btn--primary" type="submit">Add book</button>
+            </div>
+          </form>
+        </div>
+      </dialog>
+
+      <datalist id="bookCategoryOptions"></datalist>
     </div>
 
     <noscript>

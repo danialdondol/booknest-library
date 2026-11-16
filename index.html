@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Sign in to BookNest Library, a calm small-library management demo for staff."
+      content="Sign in to BookNest Library to manage the catalogue, members and daily desk activity."
     />
     <meta name="theme-color" content="#16251f" />
     <meta name="color-scheme" content="light" />
@@ -22,7 +22,7 @@
   <body class="login-page" data-page="login">
     <a class="skip-link" href="#login-main">Skip to sign in</a>
     <noscript>
-      <p class="noscript">JavaScript is required to use the BookNest demo.</p>
+      <p class="noscript">JavaScript is required to sign in to BookNest.</p>
     </noscript>
 
     <main id="login-main" class="login-layout">
@@ -56,14 +56,14 @@
               <span class="story-points__number">01</span>
               <div>
                 <strong>The catalogue</strong>
-                <p>16 titles, searchable by author, subject or shelf code.</p>
+                <p>Every title, searchable by author, subject or shelf code.</p>
               </div>
             </li>
             <li>
               <span class="story-points__number">02</span>
               <div>
                 <strong>The readers</strong>
-                <p>12 members and the loans that keep the shelves moving.</p>
+                <p>Every reader and the loans that keep the shelves moving.</p>
               </div>
             </li>
             <li>
@@ -95,15 +95,10 @@
       <section class="login-panel" aria-labelledby="login-title">
         <div class="login-card">
           <span class="login-card__stamp" aria-hidden="true">Acc. 2026 / 11</span>
-          <div class="demo-flag">
-            <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-shield"></use></svg>
-            Sample data only
-          </div>
-
           <header>
             <p class="eyebrow">Staff access</p>
-            <h2 id="login-title">Sign in to the desk</h2>
-            <p>Two demo accounts are waiting below.</p>
+            <h2 id="login-title">Sign in</h2>
+            <p>Enter your account details to continue.</p>
           </header>
 
           <div id="loginError" class="form-alert" role="alert" hidden></div>
@@ -118,12 +113,9 @@
                 autocomplete="username"
                 autocapitalize="none"
                 spellcheck="false"
-                placeholder="admin"
-                aria-describedby="usernameHint"
+                placeholder="Enter your username"
+                autofocus
               />
-              <p class="field-hint" id="usernameHint">
-                Try <code>admin</code> or <code>librarian</code>.
-              </p>
             </div>
 
             <div class="field">
@@ -155,25 +147,8 @@
               </svg>
             </button>
           </form>
-
-          <div class="demo-card">
-            <span class="demo-card__label">Two ways in</span>
-            <div class="demo-card__credentials">
-              <code>admin</code><span>/</span><code>admin123</code>
-              <span aria-hidden="true">·</span>
-              <code>librarian</code><span>/</span><code>lib2026</code>
-            </div>
-            <button class="btn btn--secondary btn--sm" type="button" data-fill-demo>
-              Use demo credentials
-            </button>
-          </div>
-
-          <p class="login-footnote">
-            <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-info"></use></svg>
-            Front-end demo. The credentials are public; do not use this sign-in for real records.
-          </p>
         </div>
-        <p class="login-copyright">BookNest v0.1.0 · IMS566 project</p>
+        <p class="login-copyright">BookNest · v0.1.0</p>
       </section>
     </main>
   </body>

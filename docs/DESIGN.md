@@ -40,7 +40,7 @@ number of strong accents.
 
 - Flat ink bar with a 4 px rust top edge and no blur or shadow.
 - Brand mark becomes a square bookplate; the active nav item is marked by a rust underline.
-- Demo status is a narrow edge tag rather than a pill.
+- No account hints or credential chips appear on the sign-in card; credentials live in README.md.
 - User avatar is a square initials tile, matching the ledger language.
 
 ### Login / conversion surface
@@ -51,7 +51,7 @@ number of strong accents.
 - Benefits are numbered ledger entries; a “desk note” replaces the generic quotation.
 - Sign-in card is a paper slip with a 1 px ink border, offset rust shadow, and accession stamp.
 - Inputs are underline fields inside the card; the primary action uses a solid offset press effect.
-- Copy is direct: “Two demo accounts are waiting below.” and a plain explanation of the demo limit.
+- Copy is direct: “Enter your account details to continue.” with credentials documented in the README.
 
 ### Dashboard
 

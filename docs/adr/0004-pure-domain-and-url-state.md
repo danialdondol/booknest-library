@@ -13,7 +13,7 @@ source array and had no stable tie-breaker.
 
 Separate domain behaviour from rendering and represent catalogue state in the URL.
 
-- `src/data/` exports frozen arrays so demo records cannot be mutated accidentally.
+- `src/data/` exports frozen arrays so sample records cannot be mutated accidentally.
 - `src/lib/books.js`, `members.js`, `dashboard.js`, `format.js`, `auth.js` and `guard.js` are
   DOM-free modules with injected inputs where browser APIs are involved.
 - Filtering is accent-insensitive and searches stable fields. Sorting always returns a copy and uses

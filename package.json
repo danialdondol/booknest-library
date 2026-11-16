@@ -2,7 +2,7 @@
   "name": "booknest-library",
   "version": "0.1.0",
   "private": true,
-  "description": "A calm, accessible small-library management demo built with vanilla JavaScript and Vite.",
+  "description": "A calm, accessible small-library management app built with vanilla JavaScript and Vite.",
   "type": "module",
   "homepage": "https://danialdondol.github.io/booknest-library/",
   "repository": {

@@ -32,4 +32,4 @@
 - [ ] The change is focused and follows the project conventions.
 - [ ] Tests were added or updated.
 - [ ] Documentation and screenshots were updated when relevant.
-- [ ] The demo-auth security boundary is still clearly represented.
+- [ ] The client-auth security boundary is still clearly represented.

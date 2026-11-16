@@ -72,7 +72,7 @@ The GitHub Pages workflow deploys the latest successful `main` build. To roll ba
 
 - `/` loads the login screen.
 - `/dashboard.html` redirects to `/index.html` when signed out.
-- Demo login reaches the dashboard.
+- Sign-in reaches the dashboard.
 - `/books.html?q=cosmos&status=Reserved` restores one record.
 - `/404.html` renders with the branded fallback.
 - Browser console has no CSP or failed-asset errors.

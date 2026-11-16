@@ -119,19 +119,6 @@ body[data-page='members'] [data-nav='members'] {
   gap: 0.8rem;
 }
 
-.demo-pill {
-  padding: 0.26rem 0.42rem 0.26rem 0.52rem;
-  border-left: 2px solid var(--gold);
-  background: rgba(217, 177, 94, 0.08);
-  color: var(--gold);
-  font-family: var(--font-mono);
-  font-size: 0.56rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
 .user-chip {
   display: flex;
   align-items: center;
@@ -379,10 +366,6 @@ body[data-page='members'] [data-nav='members'] {
 @media (max-width: 560px) {
   .site-header {
     border-top-width: 3px;
-  }
-
-  .demo-pill {
-    display: none;
   }
 
   .user-chip__name {

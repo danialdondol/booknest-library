@@ -6,17 +6,17 @@
 | ------- | --------- |
 | 0.1.x   | Yes       |
 
-## The demo-auth boundary
+## The client-auth boundary
 
-BookNest is a **client-side demonstration**. The login screen, session storage and page guard are
+BookNest uses **client-side authentication**. The login screen, session storage and page guard are
 UX features, not an access-control system:
 
-- Demo usernames and passwords are intentionally public in `src/data/users.js`.
+- Sign-in usernames and passwords are stored client-side in `src/data/users.js`.
 - A visitor can edit `sessionStorage` with browser developer tools.
 - There is no server, database, identity provider, CSRF token or audit log.
 - Do not use this authentication pattern for real member data or real library operations.
 
-A production version must replace the demo session with server-issued authentication, enforce
+A production version must replace the client-side session with server-issued authentication, enforce
 authorization on an API, add secure HTTP headers, rate limiting and audit logging.
 
 ## Security controls present
@@ -54,6 +54,6 @@ before public disclosure.
 
 ## Out of scope
 
-- The intentionally public demo credentials.
-- The absence of server-side auth, which is documented as a demo limitation.
+- The intentionally client-side sign-in accounts.
+- The absence of server-side auth, which is documented as a client-side limitation.
 - Vulnerabilities requiring a compromised browser extension or physical device access.

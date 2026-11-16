@@ -10,7 +10,7 @@ npm install
 npm run dev
 ```
 
-The app runs at <http://localhost:5173>. Demo login: `admin` / `admin123`.
+The app runs at <http://localhost:5173>. Sign-in credentials are documented in README.md.
 
 Node **20.19+** or **22.12+** is required.
 
@@ -78,7 +78,7 @@ dialog for serious or critical axe violations.
 ## Security
 
 - Never commit secrets, tokens, real member data or real email addresses.
-- Demo credentials are intentionally public; do not present them as production security.
+- Sign-in credentials are client-side and intended for local use only.
 - Report vulnerabilities privately as described in [SECURITY.md](SECURITY.md).
 
 ## Pull request checklist

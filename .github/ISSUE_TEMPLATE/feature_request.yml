@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        BookNest is a demo, not a production library system. Explain the user problem before the
+        BookNest is a small library system, not a public production service. Explain the user problem before the
         implementation.
   - type: textarea
     id: problem

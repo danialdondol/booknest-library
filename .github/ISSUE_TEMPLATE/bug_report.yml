@@ -65,5 +65,5 @@ body:
       options:
         - label: I can reproduce this on the latest `main`.
           required: true
-        - label: I checked whether this is a documented demo limitation.
+        - label: I checked whether this is a documented client-side limitation.
           required: true

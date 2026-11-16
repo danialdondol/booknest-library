@@ -35,6 +35,7 @@
               </p>
             </div>
             <div class="page-heading__actions">
+              <button class="btn btn--primary" type="button" data-add-member>Add a member</button>
               <a class="btn btn--secondary" href="./books.html">
                 See the catalogue
                 <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-book"></use></svg>
@@ -90,6 +91,7 @@
                 <p id="memberCount" class="results-count" role="status" aria-live="polite"></p>
                 <p class="results-hint">Narrow the register by membership.</p>
               </div>
+              <p class="record-notice" id="memberNotice" role="status" hidden></p>
 
               <div class="member-grid" id="memberGrid"></div>
 
@@ -149,13 +151,90 @@
 
           <p class="page-note">
             <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-info"></use></svg>
-            Member register. Contact details use the reserved
-            <code>example.edu</code> domain.
+            Your additions are stored in this browser. They stay here until browser storage is
+            cleared.
           </p>
         </div>
       </main>
 
       <!-- include:footer -->
+
+      <dialog
+        class="book-dialog record-dialog"
+        id="addMemberDialog"
+        aria-labelledby="addMemberTitle"
+      >
+        <div class="book-dialog__header">
+          <p class="eyebrow">New reader</p>
+          <button
+            class="dialog-close"
+            type="button"
+            data-close-add-member
+            aria-label="Close add member form"
+          >
+            <svg class="icon" aria-hidden="true"><use href="./icons.svg#icon-close"></use></svg>
+          </button>
+        </div>
+        <div class="book-dialog__body">
+          <h2 id="addMemberTitle">Add a member</h2>
+          <p class="form-intro">Add a reader to the register. It will be saved in this browser.</p>
+          <form class="record-form" id="addMemberForm">
+            <div class="form-grid">
+              <div class="field field--full">
+                <label for="newMemberName">Name</label>
+                <input
+                  id="newMemberName"
+                  name="name"
+                  type="text"
+                  required
+                  maxlength="80"
+                  autocomplete="name"
+                />
+              </div>
+              <div class="field field--full">
+                <label for="newMemberEmail">Email</label>
+                <input
+                  id="newMemberEmail"
+                  name="email"
+                  type="email"
+                  required
+                  maxlength="120"
+                  autocomplete="email"
+                />
+              </div>
+              <div class="field">
+                <label for="newMemberType">Membership</label>
+                <select id="newMemberType" name="type" required>
+                  <option value="Student">Student</option>
+                  <option value="Lecturer">Lecturer</option>
+                  <option value="Staff">Staff</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="newMemberJoined">Joined</label>
+                <input id="newMemberJoined" name="joined" type="date" required />
+              </div>
+              <div class="field">
+                <label for="newMemberLoans">Loans</label>
+                <input
+                  id="newMemberLoans"
+                  name="loans"
+                  type="number"
+                  min="0"
+                  max="999"
+                  required
+                  inputmode="numeric"
+                />
+              </div>
+            </div>
+            <p class="form-alert" id="addMemberError" role="alert" hidden></p>
+            <div class="form-actions">
+              <button class="btn btn--quiet" type="button" data-cancel-add-member>Cancel</button>
+              <button class="btn btn--primary" type="submit">Add member</button>
+            </div>
+          </form>
+        </div>
+      </dialog>
     </div>
 
     <noscript>

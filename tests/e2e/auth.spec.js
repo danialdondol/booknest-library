@@ -43,8 +43,11 @@ test.describe('authentication', () => {
 
     for (const account of accounts) {
       await page.goto('/');
-      await page.getByLabel('Username').fill(account.username);
-      await page.getByLabel('Password', { exact: true }).fill(account.password);
+      await page
+        .getByRole('button', { name: new RegExp(`Fill ${account.username} credentials`, 'i') })
+        .click();
+      await expect(page.getByLabel('Username')).toHaveValue(account.username);
+      await expect(page.getByLabel('Password', { exact: true })).toHaveValue(account.password);
       await page.getByRole('button', { name: /^Sign in$/ }).click();
 
       await expect(page).toHaveURL(/dashboard\.html$/);

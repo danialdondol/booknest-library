@@ -5,7 +5,7 @@
 **A calm, accessible small-library desk for staff who need answers, not another dashboard.**
 
 ![Version](https://img.shields.io/badge/version-0.1.0-2f6b54)
-![Tests](https://img.shields.io/badge/tests-97_passing-2f6b54)
+![Tests](https://img.shields.io/badge/tests-106_passing-2f6b54)
 ![License](https://img.shields.io/badge/license-MIT-d6a756)
 ![Node](https://img.shields.io/badge/node-20.19%2B-4d7f8f)
 
@@ -70,7 +70,8 @@ is needed after installation.
 
 1. Open the live site if it is available, or run `npm start` and open
    <http://localhost:5173/index.html>.
-2. Enter one of the credential pairs above, then press **Sign in**.
+2. Use the **Admin** or **Librarian** quick-fill button, or enter one of the credential pairs above,
+   then press **Sign in**.
 3. A successful sign-in opens `dashboard.html`.
 4. A wrong password or empty field shows an error message and does not sign you in.
 5. Opening `dashboard.html`, `books.html` or `members.html` without signing in redirects to the
@@ -81,21 +82,25 @@ is needed after installation.
 
 1. Sign in with the credentials in [Instructions to Test Login](#instructions-to-test-login).
 2. Read the dashboard cards, charts, collection pulse, and activity log.
-3. Open **Books**, search for `clean`, switch category or status, and click **Details**.
-4. Sort by year, then copy the URL — filters and sorting are deep-linkable.
-5. Open **Members**, search `zainab`, and filter to **Staff**.
+3. Open **Books**, search for `clean`, switch category or status, and click **Open**.
+4. Click **Add a book**, save a title, then reload — your addition remains in this browser.
+5. Open **Members**, search `zainab`, filter to **Staff**, and add a reader the same way.
 6. Sign out and try opening `/dashboard.html` directly.
 
 ## Features
 
-- **Protected staff shell** — session-only sign-in, validated session shape and expiry,
-  fail-closed pages, and a bfcache re-check after sign-out.
+- **Protected staff shell** — session-only sign-in, quick-fill buttons for both test accounts,
+  validated session shape and expiry, fail-closed pages, and a bfcache re-check after sign-out.
 - **Dashboard** — live collection and member statistics, category doughnut, monthly loan bars,
   collection pulse, and recent activity.
-- **Catalogue** — 16 titles, accent-insensitive search, category/status filters, sortable columns,
-  visible result counts, useful empty states, and an accessible details dialog.
+- **Catalogue** — 16 seed titles plus browser-added records, accent-insensitive search,
+  category/status filters, sortable columns, visible result counts, useful empty states, and an
+  accessible details dialog.
+- **Add records** — accessible forms create new books and members and persist them in
+  `localStorage` on top of the hardcoded seed data.
 - **Deep links** — book filters and sort order live in the query string and survive refresh.
-- **Members** — 12 members, live search, membership filter, loan totals, and a membership pie chart.
+- **Members** — 12 seed readers plus browser-added members, live search, membership filter, loan
+  totals, and a membership pie chart.
 - **Accessible charts** — every canvas has a text summary and a `<details>` data-table fallback.
 - **Responsive by design** — desktop table becomes readable record cards on small screens; no
   horizontal page overflow at 390 px.
@@ -133,11 +138,13 @@ flowchart LR
     V[member cards]
   end
 
-  Data[(Frozen sample data)] --> Core
+  Data[(Hardcoded seed records)] --> Core
+  Additions[(localStorage additions)] --> Core
   Pages --> Core
   Pages --> UI
   Core --> UI
   UI --> Browser[(Browser DOM + sessionStorage)]
+  UI --> Additions
 ```
 
 **Why this shape?**
@@ -160,8 +167,8 @@ booknest-library/
 ├── 404.html                   Static fallback page
 ├── src/
 │   ├── components/            Shared DOM/chart adapters
-│   ├── data/                  Frozen sample data and constants
-│   ├── lib/                   Pure domain + auth + guard logic
+│   ├── data/                  Hardcoded seed data + constants
+│   ├── lib/                   Domain, auth, guard and record persistence
 │   ├── pages/                 Page composition roots
 │   ├── partials/              Build-time header/footer includes
 │   └── styles/                Tokens, base, layout, components, login, print
@@ -187,9 +194,9 @@ Current results:
 
 | Gate             | Result                                                       |
 | ---------------- | ------------------------------------------------------------ |
-| Unit tests       | **71 passed**                                                |
-| E2E / browser    | **26 passed**                                                |
-| Line coverage    | **97.25%** on the pure domain/auth layer                     |
+| Unit tests       | **78 passed**                                                |
+| E2E / browser    | **28 passed**                                                |
+| Line coverage    | **97.57%** on the pure domain/auth/record layer              |
 | Accessibility    | **0 serious/critical** axe violations on all pages + dialog  |
 | Lint/format      | ESLint and Prettier clean                                    |
 | Production build | 5 pages, local assets, verified by `scripts/check-build.mjs` |
@@ -202,11 +209,13 @@ two font packages.
 ### Test strategy
 
 - **Unit** — accents, filtering, sorting, query round-trips, stats, percentages, session expiry,
-  malformed storage, redirects, bfcache, and chart configs.
-- **E2E** — protected routes, both sign-in accounts, bad credentials, deep links, sort state, dialog focus,
-  mobile overflow, search/filter/reset, and logout.
-- **Accessibility** — axe scans for login, dashboard, books, open book dialog, and members; manual
-  keyboard review of sort buttons, dialog close and focus return.
+  malformed storage, record validation, id generation, duplicate members, redirects, bfcache and
+  chart configs.
+- **E2E** — protected routes, both sign-in accounts and quick fill, bad credentials, deep links,
+  sort state, add-book/add-member persistence, dialog focus, mobile overflow, search/filter/reset
+  and logout.
+- **Accessibility** — axe scans for login, dashboard, books, both add dialogs, the book details
+  dialog and members; manual keyboard review of sort buttons, dialog close and focus return.
 - **No-JS** — protected pages remain hidden and show a clear noscript message.
 
 ## Accessibility
@@ -261,7 +270,7 @@ See [docs/deployment.md](docs/deployment.md) for headers, caching and rollback n
 ## Roadmap
 
 - [ ] Add a server-backed API and real authentication (OIDC or library SSO).
-- [ ] Add create/edit book and member flows with audit logging.
+- [ ] Add edit/delete flows for books and members with audit logging.
 - [ ] Add loan and reservation workflows with due-date reminders.
 - [ ] Add CSV import/export for catalogue migration.
 - [ ] Add visual regression snapshots to CI.

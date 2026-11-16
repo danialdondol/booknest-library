@@ -1,3 +1,4 @@
+import { USERS } from '../data/users.js';
 import { authenticate, saveSession } from '../lib/auth.js';
 import { pageUrl, redirectIfSignedIn } from '../lib/guard.js';
 
@@ -38,6 +39,7 @@ function initLogin() {
   const password = document.getElementById('password');
   const toggle = document.querySelector('[data-toggle-password]');
   const toggleLabel = document.querySelector('[data-password-label]');
+  const fillButtons = document.querySelectorAll('[data-fill-account]');
   toggle.addEventListener('click', () => {
     const isHidden = password.type === 'password';
     password.type = isHidden ? 'text' : 'password';
@@ -46,6 +48,17 @@ function initLogin() {
     toggleLabel.textContent = isHidden ? 'Hide' : 'Show';
     password.focus();
   });
+
+  for (const button of fillButtons) {
+    button.addEventListener('click', () => {
+      const account = USERS.find((entry) => entry.username === button.dataset.fillAccount);
+      if (!account) return;
+      username.value = account.username;
+      password.value = account.password;
+      clearError();
+      form.querySelector('button[type="submit"]').focus();
+    });
+  }
 
   username.addEventListener('input', clearError);
   password.addEventListener('input', clearError);

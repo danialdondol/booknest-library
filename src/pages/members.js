@@ -6,13 +6,14 @@ import {
   setChartLabel,
 } from '../components/charts.js';
 import { createStatusBadge, statusTone } from '../components/status.js';
-import { MEMBERS } from '../data/members.js';
 import { memberTypeChartConfig } from '../lib/chart-configs.js';
 import { formatDate, initials, pluralize } from '../lib/format.js';
 import { guardPage } from '../lib/guard.js';
 import { filterMembers, getMemberStats, getMemberTypeCounts } from '../lib/members.js';
+import { createMemberRecord, getStoredMembers } from '../lib/library-records.js';
 
 const state = { query: '', type: 'all' };
+let members = getStoredMembers();
 
 function iconUse(name) {
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -74,13 +75,13 @@ function renderMembers() {
   const grid = document.getElementById('memberGrid');
   const empty = document.getElementById('emptyMembers');
   const count = document.getElementById('memberCount');
-  const rows = filterMembers(MEMBERS, state);
+  const rows = filterMembers(members, state);
 
   grid.replaceChildren(...rows.map(memberCard));
   count.textContent =
-    rows.length === MEMBERS.length
+    rows.length === members.length
       ? `${pluralize(rows.length, 'member')} in the register`
-      : `${rows.length} of ${MEMBERS.length} members shown`;
+      : `${rows.length} of ${members.length} members shown`;
   empty.hidden = rows.length > 0;
 
   const clear = document.querySelector('[data-clear-member-search]');
@@ -88,7 +89,7 @@ function renderMembers() {
 }
 
 function renderSummary() {
-  const stats = getMemberStats(MEMBERS);
+  const stats = getMemberStats(members);
   const total = document.querySelector('[data-member-loans]');
   const average = document.querySelector('[data-member-average]');
   if (total) total.textContent = String(stats.totalLoans);
@@ -96,7 +97,7 @@ function renderSummary() {
 }
 
 function renderChart() {
-  const breakdown = getMemberTypeCounts(MEMBERS);
+  const breakdown = getMemberTypeCounts(members);
   const labels = breakdown.map((entry) => entry.type);
   const values = breakdown.map((entry) => entry.count);
   const canvas = document.getElementById('memberTypeChart');
@@ -117,10 +118,33 @@ function renderChart() {
   );
 }
 
+const addMemberDialog = document.getElementById('addMemberDialog');
+const addMemberForm = document.getElementById('addMemberForm');
+const addMemberError = document.getElementById('addMemberError');
+const addMemberNotice = document.getElementById('memberNotice');
+
+function addMemberDialogReset() {
+  addMemberForm.reset();
+  addMemberError.hidden = true;
+  addMemberError.textContent = '';
+  document.getElementById('newMemberType').value = 'Student';
+  document.getElementById('newMemberJoined').value = new Date().toISOString().slice(0, 10);
+  document.getElementById('newMemberLoans').value = '0';
+}
+
+function openAddMemberDialog() {
+  addMemberDialogReset();
+  addMemberDialog.showModal();
+  document.getElementById('newMemberName').focus();
+}
+
 function wireEvents() {
   const search = document.getElementById('memberSearch');
   const clear = document.querySelector('[data-clear-member-search]');
   const type = document.getElementById('typeFilter');
+  const addButton = document.querySelector('[data-add-member]');
+  const addClose = addMemberDialog.querySelector('[data-close-add-member]');
+  const addCancel = addMemberDialog.querySelector('[data-cancel-add-member]');
 
   search.addEventListener('input', () => {
     state.query = search.value.slice(0, 100);
@@ -138,11 +162,39 @@ function wireEvents() {
     state.type = type.value;
     renderMembers();
   });
+
+  addButton.addEventListener('click', openAddMemberDialog);
+  addClose.addEventListener('click', () => addMemberDialog.close());
+  addCancel.addEventListener('click', () => addMemberDialog.close());
+  addMemberDialog.addEventListener('click', (event) => {
+    if (event.target === addMemberDialog) addMemberDialog.close();
+  });
+  addMemberDialog.addEventListener('close', () => addButton.focus());
+
+  addMemberForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    addMemberError.hidden = true;
+
+    try {
+      const member = createMemberRecord(Object.fromEntries(new FormData(addMemberForm)));
+      members = getStoredMembers();
+      renderMembers();
+      renderSummary();
+      renderChart();
+      addMemberDialog.close();
+      addMemberNotice.textContent = `${member.name} was added to the register.`;
+      addMemberNotice.hidden = false;
+    } catch (error) {
+      addMemberError.textContent = error.message;
+      addMemberError.hidden = false;
+    }
+  });
 }
 
 const session = guardPage();
 if (session) {
   initChrome(session, 'members');
+  addMemberDialogReset();
   wireEvents();
   renderMembers();
   renderSummary();

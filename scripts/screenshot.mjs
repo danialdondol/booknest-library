@@ -4,6 +4,7 @@ import { mkdir } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
+import { USERS } from '../src/data/users.js';
 import { preview } from 'vite';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -38,7 +39,8 @@ try {
   await page.evaluate(() => document.fonts.ready);
   await page.screenshot({ path: resolve(output, 'login.png') });
 
-  await page.getByRole('button', { name: /use demo credentials/i }).click();
+  await page.getByLabel('Username').fill(USERS[0].username);
+  await page.getByLabel('Password', { exact: true }).fill(USERS[0].password);
   await page.getByRole('button', { name: /sign in/i }).click();
   await page.waitForURL('**/dashboard.html');
   await page.evaluate(() => document.fonts.ready);
@@ -62,7 +64,8 @@ try {
   });
   const mobilePage = await mobile.newPage();
   await mobilePage.goto(`${base}/`, { waitUntil: 'networkidle' });
-  await mobilePage.getByRole('button', { name: /use demo credentials/i }).click();
+  await mobilePage.getByLabel('Username').fill(USERS[0].username);
+  await mobilePage.getByLabel('Password', { exact: true }).fill(USERS[0].password);
   await mobilePage.getByRole('button', { name: /sign in/i }).click();
   await mobilePage.waitForURL('**/dashboard.html');
   await mobilePage.evaluate(() => document.fonts.ready);

@@ -6,8 +6,8 @@ inferred and delivered.
 
 ## Goal
 
-Turn the four-page IMS566 prototype into a production-quality static repository that a first-time
-user can run in one command, understand in under a minute, and trust as a demonstration of
+Turn the four-page original prototype into a production-quality static repository that a first-time
+user can run in one command, understand in under a minute, and trust as an example of
 accessible front-end engineering.
 
 ## Workstreams
@@ -15,7 +15,7 @@ accessible front-end engineering.
 | ID     | Outcome                                                          | Evidence                                                           |
 | ------ | ---------------------------------------------------------------- | ------------------------------------------------------------------ |
 | BN-001 | Repository foundation, pinned toolchain and local git history    | `package.json`, `package-lock.json`, `.gitignore`, `.editorconfig` |
-| BN-002 | Frozen demo data and pure domain/auth modules                    | `src/data/`, `src/lib/`                                            |
+| BN-002 | Sample data and pure domain/auth modules                         | `src/data/`, `src/lib/`                                            |
 | BN-003 | Accessible login, session handling and fail-closed route guards  | `src/pages/login.js`, `src/lib/auth.js`, `src/lib/guard.js`        |
 | BN-004 | Dashboard with live stats, charts, pulse and activity            | `dashboard.html`, `src/pages/dashboard.js`                         |
 | BN-005 | Searchable, filterable, sortable catalogue with URL state        | `books.html`, `src/lib/books.js`, `tests/e2e/books.spec.js`        |
@@ -28,7 +28,7 @@ accessible front-end engineering.
 
 - [x] `npm start` works from a clean checkout and installs dependencies on first run.
 - [x] All four pages load from the production build with local assets.
-- [x] Demo login, validation, logout and protected-route redirects work.
+- [x] Sign-in, validation, logout and protected-route redirects work.
 - [x] Dashboard values are calculated from data, not hardcoded in the page.
 - [x] Book search, filters, sorting, deep links and details dialog work.
 - [x] Member search, type filter and chart work.

@@ -1,4 +1,4 @@
-import { DEMO_USERS } from '../data/users.js';
+import { USERS } from '../data/users.js';
 
 export const SESSION_KEY = 'booknest.session.v1';
 export const SESSION_VERSION = 1;
@@ -23,7 +23,7 @@ function isSessionUser(value) {
   );
 }
 
-export function authenticate(username, password, accounts = DEMO_USERS) {
+export function authenticate(username, password, accounts = USERS) {
   const normalizedUsername = String(username ?? '')
     .trim()
     .toLowerCase();

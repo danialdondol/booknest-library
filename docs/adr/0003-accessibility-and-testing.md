@@ -6,8 +6,8 @@
 ## Context
 
 The original prototype used clickable `<th>` cells for sorting, placeholder-only search labels,
-canvas charts with no text alternative, and no automated tests. Those are common demo shortcuts but
-poor production defaults. The project needs confidence without turning a vanilla-JS assignment into
+canvas charts with no text alternative, and no automated tests. Those are common prototype shortcuts but
+poor production defaults. The project needs confidence without turning a vanilla-JS project into
 a large testing framework.
 
 ## Decision

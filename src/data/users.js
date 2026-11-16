@@ -1,6 +1,6 @@
 /**
- * Demo accounts only. These credentials ship in the browser bundle and are
- * intentionally public. Never treat this as real authentication.
+ * Local sign-in accounts. Credentials ship in the browser bundle and are
+ * client-side only; they are not server-enforced access control.
  */
 const users = [
   {
@@ -17,4 +17,4 @@ const users = [
   },
 ];
 
-export const DEMO_USERS = Object.freeze(users.map((user) => Object.freeze(user)));
+export const USERS = Object.freeze(users.map((user) => Object.freeze(user)));

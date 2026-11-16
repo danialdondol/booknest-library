@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest';
 import { BOOK_STATUS_VALUES, MEMBER_TYPE_VALUES } from '../../src/data/constants.js';
 import { BOOKS } from '../../src/data/books.js';
 import { MEMBERS } from '../../src/data/members.js';
-import { DEMO_USERS } from '../../src/data/users.js';
+import { USERS } from '../../src/data/users.js';
 
-describe('demo data integrity', () => {
+describe('sample data integrity', () => {
   it('has unique book ids and valid fields', () => {
     expect(new Set(BOOKS.map((book) => book.id)).size).toBe(BOOKS.length);
     for (const book of BOOKS) {
@@ -26,9 +26,9 @@ describe('demo data integrity', () => {
     }
   });
 
-  it('keeps demo credential fixtures explicit', () => {
-    expect(DEMO_USERS).toHaveLength(2);
-    expect(DEMO_USERS.map((user) => user.username)).toEqual(['admin', 'librarian']);
-    expect(DEMO_USERS.every((user) => user.password.length >= 6)).toBe(true);
+  it('keeps account fixtures explicit', () => {
+    expect(USERS).toHaveLength(2);
+    expect(USERS.map((user) => user.username)).toEqual(['admin', 'librarian']);
+    expect(USERS.every((user) => user.password.length >= 6)).toBe(true);
   });
 });

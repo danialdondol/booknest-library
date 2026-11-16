@@ -34,7 +34,7 @@ gh repo create "$OWNER/booknest-library" \
   --source=. \
   --remote=origin \
   --push \
-  --description "A calm, accessible small-library management demo built with vanilla JavaScript and Vite."
+  --description "A calm, accessible small-library management app built with vanilla JavaScript and Vite."
 ```
 
 If the repository already exists:
@@ -74,7 +74,7 @@ gh api \
   -H "Accept: application/vnd.github+json" \
   "/repos/$OWNER/booknest-library/milestones" \
   -f title="v0.1.0" \
-  -f description="Production-quality repository foundation and BookNest demo release."
+  -f description="Production-quality repository foundation and BookNest release."
 ```
 
 ## 4. Issues
@@ -118,7 +118,7 @@ Add issues from the GitHub UI or with `gh project item-add`. Suggested columns: 
 In **Settings → Branches**, add a rule for `main`:
 
 - Require a pull request before merging.
-- Require approvals: 1 (or 0 for a solo assignment, but keep status checks).
+- Require approvals: 1 (or 0 for a solo project, but keep status checks).
 - Require status checks to pass: `quality` and `e2e`.
 - Require branches to be up to date before merging.
 - Block force pushes and deletions.
@@ -156,4 +156,4 @@ badges render.
 - Do not commit `.env` files, tokens or real library data.
 - Use GitHub's private vulnerability reporting (see `SECURITY.md`).
 - Dependabot opens grouped weekly PRs for npm and Actions.
-- Treat the demo credentials as public by design.
+- Treat the sign-in accounts as client-side by design.

@@ -43,16 +43,16 @@ All notable changes to BookNest are documented here. The format follows
 - Removed all CDN dependencies and bundled local assets.
 - Replaced HTML string interpolation with safe DOM APIs.
 - Added a restrictive meta content-security policy.
-- Added demo-only security documentation and a private vulnerability reporting process.
+- Added security documentation and a private vulnerability reporting process.
 
 ### Changed
 
 - Replaced the original Bootstrap prototype with a custom responsive CSS system.
 - Moved hardcoded data into frozen ES modules.
-- Corrected demo member email domains to the reserved `example.edu` domain.
+- Corrected sample member email domains to the reserved `example.edu` domain.
 
 ### Known limitations
 
-- Client-side demo authentication is not real security.
+- Client-side authentication is not real security.
 - Data is static; edits and loans do not persist.
 - GitHub Pages cannot set HTTP security headers.

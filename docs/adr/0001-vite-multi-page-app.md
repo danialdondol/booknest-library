@@ -9,7 +9,7 @@ The original BookNest prototype was four static HTML files sharing a Bootstrap n
 global scripts. It worked, but had no build step, no dependency lockfile, CDN-only assets, duplicated
 navigation, and no way to test the logic independently of the DOM.
 
-The assignment brief still calls for four distinct pages, semantic HTML, responsive design and
+The project brief still calls for four distinct pages, semantic HTML, responsive design and
 separated content/behaviour/presentation. A single-page framework would add routing and bundle cost
 without a state-sharing requirement.
 

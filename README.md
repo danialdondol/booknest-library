@@ -12,9 +12,9 @@
 [![CI](https://github.com/danialdondol/booknest-library/actions/workflows/ci.yml/badge.svg)](https://github.com/danialdondol/booknest-library/actions/workflows/ci.yml)
 [![Deploy](https://github.com/danialdondol/booknest-library/actions/workflows/deploy.yml/badge.svg)](https://github.com/danialdondol/booknest-library/actions/workflows/deploy.yml)
 
-**Live demo:** <https://danialdondol.github.io/booknest-library/>
+**Live site:** <https://danialdondol.github.io/booknest-library/>
 
-[Quickstart](#quickstart) · [Live demo](https://danialdondol.github.io/booknest-library/) · [Features](#features) · [Architecture](#architecture) · [Design](docs/DESIGN.md) · [Quality](#quality-gates) · [Docs](docs/) · [Roadmap](#roadmap)
+[Quickstart](#quickstart) · [Live site](https://danialdondol.github.io/booknest-library/) · [Features](#features) · [Architecture](#architecture) · [Design](docs/DESIGN.md) · [Quality](#quality-gates) · [Docs](docs/) · [Roadmap](#roadmap)
 
 </div>
 
@@ -33,16 +33,16 @@
 
 </details>
 
-BookNest is a four-page library management demo: protected staff login, a live dashboard,
+BookNest is a four-page library management app: protected staff login, a live dashboard,
 a searchable and sortable catalogue, and a member register. It is built as a Vite multi-page
 app with vanilla JavaScript, accessible custom CSS, and locally bundled fonts and charts.
 
-> **Demo boundary:** authentication runs entirely in the browser with public demo credentials.
-> It demonstrates UX and route protection; it is not a security boundary. See [SECURITY.md](SECURITY.md).
+> **Authentication boundary:** sign-in runs entirely in the browser with client-side credentials.
+> It provides UX and route protection; it is not a security boundary. See [SECURITY.md](SECURITY.md).
 
 ## Quickstart
 
-Try the [live demo](https://danialdondol.github.io/booknest-library/) first, or run it locally:
+Try the [live site](https://danialdondol.github.io/booknest-library/) first, or run it locally:
 
 ```bash
 npm start
@@ -56,19 +56,30 @@ npm install
 npm run dev
 ```
 
-Sign in with:
-
-| Username    | Password   | Role          |
-| ----------- | ---------- | ------------- |
-| `admin`     | `admin123` | Administrator |
-| `librarian` | `lib2026`  | Librarian     |
-
 Node **20.19+** or **22.12+** is required. No account, database, API key, or internet connection
 is needed after installation.
 
+## Instructions to Test Login
+
+### Login Credentials
+
+| Role      | Username    | Password   |
+| --------- | ----------- | ---------- |
+| Admin     | `admin`     | `admin123` |
+| Librarian | `librarian` | `lib2026`  |
+
+1. Open the live site if it is available, or run `npm start` and open
+   <http://localhost:5173/index.html>.
+2. Enter one of the credential pairs above, then press **Sign in**.
+3. A successful sign-in opens `dashboard.html`.
+4. A wrong password or empty field shows an error message and does not sign you in.
+5. Opening `dashboard.html`, `books.html` or `members.html` without signing in redirects to the
+   login page.
+6. **Sign out** returns to the login page.
+
 ### 60-second tour
 
-1. Sign in with the demo button.
+1. Sign in with the credentials in [Instructions to Test Login](#instructions-to-test-login).
 2. Read the dashboard cards, charts, collection pulse, and activity log.
 3. Open **Books**, search for `clean`, switch category or status, and click **Details**.
 4. Sort by year, then copy the URL — filters and sorting are deep-linkable.
@@ -77,7 +88,7 @@ is needed after installation.
 
 ## Features
 
-- **Protected staff shell** — session-only demo login, validated session shape and expiry,
+- **Protected staff shell** — session-only sign-in, validated session shape and expiry,
   fail-closed pages, and a bfcache re-check after sign-out.
 - **Dashboard** — live collection and member statistics, category doughnut, monthly loan bars,
   collection pulse, and recent activity.
@@ -122,7 +133,7 @@ flowchart LR
     V[member cards]
   end
 
-  Data[(Frozen demo data)] --> Core
+  Data[(Frozen sample data)] --> Core
   Pages --> Core
   Pages --> UI
   Core --> UI
@@ -192,7 +203,7 @@ two font packages.
 
 - **Unit** — accents, filtering, sorting, query round-trips, stats, percentages, session expiry,
   malformed storage, redirects, bfcache, and chart configs.
-- **E2E** — protected routes, bad credentials, demo login, deep links, sort state, dialog focus,
+- **E2E** — protected routes, both sign-in accounts, bad credentials, deep links, sort state, dialog focus,
   mobile overflow, search/filter/reset, and logout.
 - **Accessibility** — axe scans for login, dashboard, books, open book dialog, and members; manual
   keyboard review of sort buttons, dialog close and focus return.
@@ -213,9 +224,9 @@ BookNest targets WCAG 2.1 AA for the implemented surfaces:
 
 ## Security model
 
-This is a **client-side demo**, not a production authentication system:
+This is **client-side authentication**, not a production authentication system:
 
-- Credentials are public and stored in the client bundle.
+- Sign-in credentials are stored in the client bundle and are not server-enforced.
 - `sessionStorage` is editable by the visitor; the guard is a UX gate, not an access control.
 - An XSS would be a full session bypass by design. The app avoids HTML interpolation and runs under
   a restrictive meta CSP (`script-src 'self'`, `object-src 'none'`, `base-uri 'none'`).
@@ -223,7 +234,7 @@ This is a **client-side demo**, not a production authentication system:
 - GitHub Pages cannot set security headers. A production deployment should add real server-side
   auth, HTTPS headers, CSRF protection and rate limiting.
 
-See [SECURITY.md](SECURITY.md) and [ADR-0002](docs/adr/0002-demo-authentication.md).
+See [SECURITY.md](SECURITY.md) and [ADR-0002](docs/adr/0002-client-side-authentication.md).
 
 ## Deployment
 
@@ -238,21 +249,14 @@ The repository includes a GitHub Pages workflow that deploys `dist/` after a suc
 Vite uses a relative base, so the same build also works on a custom domain at the site root.
 See [docs/deployment.md](docs/deployment.md) for headers, caching and rollback notes.
 
-## Assignment mapping
+## Frameworks / Libraries Used
 
-This project fulfils and extends the original IMS566 brief:
-
-| Requirement                           | Implementation                                               |
-| ------------------------------------- | ------------------------------------------------------------ |
-| Simulated login + validation          | Accessible form, demo fill, error states, show/hide password |
-| Session protection + logout           | Versioned session, expiry, guarded pages, bfcache re-check   |
-| Consistent responsive navigation      | Build-time shared header, active page state, mobile nav      |
-| Dashboard cards and charts            | Live stats, doughnut, bar chart, pulse, activity             |
-| Dataset 1: books with search/filter   | 16 books, category/status filters, search and sort           |
-| Dataset 2: members with search/filter | 12 members, live search, type filter                         |
-| Data visualisation                    | Chart.js with accessible data-table fallbacks                |
-| Semantic, commented, separated code   | ES modules, CSS layers, partials, JSDoc where useful         |
-| Responsive design                     | Mobile, tablet and desktop layouts verified in Playwright    |
+- **Vite** for the multi-page build and local development server.
+- **Vanilla HTML, CSS and ES modules** for the four-page interface.
+- **Fraunces Variable** and **Manrope Variable** for self-hosted typography.
+- **Chart.js** for the dashboard visualisations.
+- **Vitest** for unit tests and coverage.
+- **Playwright** and **axe-core** for browser and accessibility tests.
 
 ## Roadmap
 

@@ -27,4 +27,4 @@ if (!existsSync(resolve(root, 'node_modules'))) {
 }
 
 console.log('\nSetup complete. Start the app with:\n\n  npm run dev\n');
-console.log('Demo login: admin / admin123\n');
+console.log('Sign-in credentials are documented in README.md.\n');

@@ -287,27 +287,6 @@
   transform: rotate(-3deg);
 }
 
-.demo-flag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.36rem;
-  margin-bottom: 1.5rem;
-  padding: 0.26rem 0.45rem;
-  border-left: 2px solid var(--gold);
-  background: var(--gold-soft);
-  color: var(--gold-dark);
-  font-family: var(--font-mono);
-  font-size: 0.5rem;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
-
-.demo-flag .icon {
-  width: 11px;
-  height: 11px;
-}
-
 .login-card header {
   margin-bottom: 1.35rem;
 }
@@ -395,62 +374,12 @@
   transform: translateX(3px);
 }
 
-.demo-card {
-  display: grid;
-  gap: 0.65rem;
-  margin-top: 1.4rem;
-  padding: 0.85rem;
-  border: 1px dashed var(--line-strong);
-  border-radius: var(--radius-xs);
-  background: var(--paper-warm);
-}
-
-.demo-card__label {
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.52rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.demo-card__credentials {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--ink-soft);
-  font-size: 0.7rem;
-}
-
-.demo-card .btn {
-  justify-self: start;
-}
-
-.login-footnote {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.38rem;
-  margin: 1.1rem 0 0;
-  color: var(--muted-light);
-  font-size: 0.6rem;
-  line-height: 1.5;
-}
-
-.login-footnote .icon {
-  width: 12px;
-  height: 12px;
-  margin-top: 0.12rem;
-  color: var(--gold-dark);
-}
-
 .login-copyright {
   margin: 0;
   color: var(--muted-light);
   font-family: var(--font-mono);
-  font-size: 0.55rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: 0.58rem;
+  letter-spacing: 0.02em;
 }
 
 /* ---------- 404 ---------- */

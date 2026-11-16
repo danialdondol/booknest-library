@@ -7,7 +7,7 @@ test.describe('authentication', () => {
     for (const path of ['/dashboard.html', '/books.html', '/members.html']) {
       await page.goto(path);
       await expect(page).toHaveURL(/index\.html$/);
-      await expect(page.getByRole('heading', { name: 'Sign in to the desk' })).toBeVisible();
+      await expect(page.getByRole('heading', { name: 'Sign in', exact: true })).toBeVisible();
     }
   });
 
@@ -35,22 +35,28 @@ test.describe('authentication', () => {
     await expect(page.getByLabel('Password', { exact: true })).toBeFocused();
   });
 
-  test('signs in with demo credentials and signs out', async ({ page }) => {
-    await page.goto('/');
-    await page.getByRole('button', { name: /use demo credentials/i }).click();
-    await expect(page.getByLabel('Username')).toHaveValue('admin');
-    await expect(page.getByLabel('Password', { exact: true })).toHaveValue('admin123');
+  test('signs in with both accounts and signs out', async ({ page }) => {
+    const accounts = [
+      { username: 'admin', password: 'admin123', name: 'Library Admin' },
+      { username: 'librarian', password: 'lib2026', name: 'Siti Librarian' },
+    ];
 
-    await page.getByRole('button', { name: /^Sign in$/ }).click();
-    await expect(page).toHaveURL(/dashboard\.html$/);
-    await expect(page.getByText('Library Admin', { exact: true }).first()).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Dashboard', exact: true })).toHaveAttribute(
-      'aria-current',
-      'page',
-    );
+    for (const account of accounts) {
+      await page.goto('/');
+      await page.getByLabel('Username').fill(account.username);
+      await page.getByLabel('Password', { exact: true }).fill(account.password);
+      await page.getByRole('button', { name: /^Sign in$/ }).click();
 
-    await page.getByRole('button', { name: /sign out/i }).click();
-    await expect(page).toHaveURL(/index\.html$/);
+      await expect(page).toHaveURL(/dashboard\.html$/);
+      await expect(page.getByText(account.name, { exact: true }).first()).toBeVisible();
+      await expect(page.getByRole('link', { name: 'Dashboard', exact: true })).toHaveAttribute(
+        'aria-current',
+        'page',
+      );
+
+      await page.getByRole('button', { name: /sign out/i }).click();
+      await expect(page).toHaveURL(/index\.html$/);
+    }
   });
 
   test('toggles password visibility with state', async ({ page }) => {
